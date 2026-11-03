@@ -1,81 +1,209 @@
-*{
+/* Import Font Modern Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* ==========================================
+   NAVBAR COMPONENT STYLES
+   ========================================== */
 .navbar {
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   box-sizing: border-box;
-   padding: 20px 80px;
-   background-color: #522C1A;
-}
-/* logo */
-.navbar .left-nav{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 20px;
-    color: #EBD8BB;
+    padding: 16px 60px;
+    background-color: #522C1A;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
-/* navigation text */
+
+/* --- Left Nav / Logo --- */
+.navbar .left-nav {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .left-nav h1 {
+    color: #EBD8BB;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.navbar .left-nav h1:hover {
+    color: #ffffff;
+    transform: scale(1.02);
+}
+
+/* --- Center Nav / Menu Links --- */
 .navbar .center-nav {
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 20px;
-}
-
-.navbar .link {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    justify-content: center;
-}
-
-.navbar .link a {
-    text-decoration: none;
+    gap: 32px;
     list-style: none;
-    color: #EBD8BB;
-    font-size: 16px;
-    font-weight: 600;
 }
-/* icon */
-.navbar .right-nav{
+
+.navbar .center-nav li {
+    list-style: none;
+}
+
+.navbar .center-nav a {
+    text-decoration: none;
+    color: #EBD8BB;
+    font-size: 15px;
+    font-weight: 500;
+    position: relative;
+    padding: 6px 0;
+    letter-spacing: 0.3px;
+    transition: color 0.3s ease;
+}
+
+.navbar .center-nav a:hover,
+.navbar .center-nav a.active {
+    color: #ffffff;
+}
+
+/* Animasi garis bawah halus saat hover */
+.navbar .center-nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #EBD8BB;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.navbar .center-nav a:hover::after,
+.navbar .center-nav a.active::after {
+    width: 100%;
+}
+
+/* --- Right Nav / Search, Cart & Avatar --- */
+.navbar .right-nav {
     display: flex;
-    justify-content: center;
     align-items: center;
     gap: 20px;
     color: #EBD8BB;
-}   
+}
 
-
-/* search-box */
+/* Search Box */
 .search-box {
-  position: relative;
-  display: flex;
-  align-items: center;
+    position: relative;
+    display: flex;
+    align-items: center;
 }
 
 .search-box input {
-  width: 100%;
-  padding: 8px 12px 8px 36px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  outline: none;
+    width: 180px;
+    padding: 8px 14px 8px 36px;
+    font-size: 13px;
+    color: #333333;
+    background-color: #fbf7f0;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    outline: none;
+    transition: width 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-box input:focus {
+    width: 220px;
+    background-color: #ffffff;
+    border-color: #EBD8BB;
+    box-shadow: 0 0 10px rgba(235, 216, 187, 0.45);
 }
 
 .search-box i {
-  position: absolute;
-  left: 12px;
-  color: #888;
-  pointer-events: none;
+    position: absolute;
+    left: 12px;
+    color: #8C6A54;
+    font-size: 14px;
+    pointer-events: none;
 }
-/* avatar */
-.circle-avatar{
-    width: 50px;
-    height: 50px;
+
+/* Tombol Keranjang / Cart */
+.cart-btn {
+    position: relative;
+    color: #EBD8BB;
+    font-size: 18px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
-    border: 1px solid #ccc;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cart-btn:hover {
+    color: #ffffff;
+    background-color: rgba(235, 216, 187, 0.18);
+    transform: translateY(-1px);
+}
+
+/* Avatar Pengguna */
+.circle-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #EBD8BB;
+    object-fit: cover;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.circle-avatar:hover {
+    transform: scale(1.08);
+    border-color: #ffffff;
+}
+
+/* ==========================================
+   RESPONSIVE (TABLET & MOBILE)
+   ========================================== */
+@media (max-width: 960px) {
+    .navbar {
+        padding: 16px 30px;
+    }
+    .navbar .center-nav {
+        gap: 20px;
+    }
+    .search-box input {
+        width: 140px;
+    }
+    .search-box input:focus {
+        width: 170px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-wrap: wrap;
+        padding: 14px 20px;
+        gap: 12px;
+    }
+    .navbar .center-nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        gap: 20px;
+        padding-top: 10px;
+        border-top: 1px solid rgba(235, 216, 187, 0.2);
+    }
+    .navbar .left-nav h1 {
+        font-size: 22px;
+    }
 }
