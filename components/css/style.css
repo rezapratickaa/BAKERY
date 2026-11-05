@@ -399,7 +399,10 @@ h1, h2, h3, h4, .hero-title, .menu-section-title, .gallery-title, .testimonials-
     display: flex;
     flex-direction: column;
     cursor: pointer;
-    transition: transform 0.25s ease;
+    transition: transform 0.25s ease, border-color 0.25s ease;
+    border: 1px solid rgba(82, 44, 26, 0.15);
+    border-radius: 14px;
+    padding: 12px;
 }
 
 .menu-card:hover {
