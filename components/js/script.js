@@ -1,4 +1,4 @@
-function loadComponent(targetSelector, filePath) {
+﻿function loadComponent(targetSelector, filePath) {
     fetch(filePath)
         .then(response => {
             if (!response.ok) {
@@ -165,11 +165,35 @@ function initMenuFilter() {
     });
 }
 
+
+// Card Component Loader
+let _cardTpl = null;
+function loadCardComponents() {
+    const els = document.querySelectorAll('[data-card]');
+    if (!els.length) return Promise.resolve();
+    const load = _cardTpl ? Promise.resolve(_cardTpl)
+        : fetch('components/card.html').then(r => r.text()).then(t => { _cardTpl = t; return t; });
+    return load.then(tpl => {
+        els.forEach(el => {
+            const img = el.dataset.img;
+            const icon = el.dataset.icon || 'fa-bread-slice';
+            const imageHtml = img
+                ? `<img src="${img}" alt="${el.dataset.name}">`
+                : `<div class="menu-img-placeholder"><i class="fa-solid ${icon}"></i></div>`;
+            el.outerHTML = tpl
+                .replace('{{name}}', el.dataset.name || '')
+                .replace('{{price}}', el.dataset.price || '')
+                .replace('{{rating}}', el.dataset.rating || '5,0')
+                .replace('{{sold}}', el.dataset.sold || '0 Sold')
+                .replace('{{image}}', imageHtml);
+        });
+    });
+}
 // Jalankan saat halaman selesai dimuat
 document.addEventListener('DOMContentLoaded', () => {
     autoLoadComponents();
+    loadCardComponents().then(() => initMenuFilter());
     initTestimonialsSlider();
-    initMenuFilter();
 
     if (document.getElementById('navbar') && !document.querySelector('[data-component*="navbar"]')) {
         loadComponent('#navbar', 'components/navbar.html');

@@ -19,7 +19,7 @@
 .hero-content {
     flex: 1;
     padding: 60px 40px 60px 80px;
-    max-width: 600px;
+    max-width: 700px;
     z-index: 2;
 }
 
@@ -513,6 +513,7 @@
 .menu-sold {
     color: #8A7264;
 }
+
 
 @media (max-width: 1100px) {
     .menu-grid {

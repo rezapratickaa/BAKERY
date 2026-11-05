@@ -104,6 +104,11 @@
     align-items: center;
 }
 
+input::placeholder,
+textarea::placeholder{
+    color: #EBD8BB;
+}
+
 .search-box input {
     width: 180px;
     padding: 8px 14px 8px 36px;
@@ -128,7 +133,7 @@
 .search-box i {
     position: absolute;
     left: 12px;
-    color: #8C6A54;
+    color: #EBD8BB;
     font-size: 14px;
     pointer-events: none;
 }
