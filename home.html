@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bakery - Home</title>
+    <!-- Font Awesome Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="components/css/components.css">
+    <link rel="stylesheet" href="components/css/style.css">
+</head>
+<body>
+
+    <!-- Komponen Navbar -->
+    <div data-component="components/navbar.html"></div>
+
+    <!-- SVG ClipPath untuk Lekukan Shape Gambar Hero -->
+    <svg width="0" height="0" style="position: absolute;">
+        <defs>
+            <clipPath id="hero-shape" clipPathUnits="objectBoundingBox">
+                <!-- Lekukan organik sisi kiri gambar persis seperti gambar referensi -->
+                <path d="M 0.22,0 
+                C 0.12,0.06 0.00,0.15 0.02,0.28 
+                C 0.04,0.40 0.20,0.44 0.22,0.56 
+                C 0.24,0.66 0.16,0.74 0.06,0.80 
+                C 0.01,0.84 0.00,0.92 0.08,0.97
+                C 0.12,0.99 0.17,1.00 0.22,1 
+                L 1,1 
+                L 1,0 
+                Z" />
+            </clipPath>
+        </defs>
+    </svg>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Tefa Bakery And<br>Pastry</h1>
+            <p class="hero-description">
+                Tefa Bakery And Pastry adalah toko roti dan kue berbasis Teaching Factory 
+                (pembelajaran berbasis produksi/industri nyata) yang menyajikan produk 
+                berkualitas tinggi dengan cita rasa lezat.
+            </p>
+        </div>
+
+        <div class="hero-image-area">
+            <div class="hero-image-wrapper">
+                <!-- GAMBAR HERO (Kosongkan dulu, nanti Anda bisa isi seperti ini): -->
+                <!-- <img src="assets/nama_foto.jpg" alt="Tefa Bakery And Pastry"> -->
+                <div class="hero-placeholder">
+                    <i class="fa-regular fa-image"></i>
+                    <p>Area Foto Hero</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BRAND / PARTNER TICKER SECTION -->
+    <section class="brand-ticker">
+        <div class="ticker-track">
+            <!-- Group 1 -->
+            <div class="ticker-group">
+                <div class="brand-item brand-bbc">
+                    <span>B</span><span>B</span><span>C</span>
+                </div>
+                <div class="brand-item brand-deloitte">Deloitte.</div>
+                <div class="brand-item brand-unilever">Unilever</div>
+            </div>
+            <!-- Group 2 -->
+            <div class="ticker-group" aria-hidden="true">
+                <div class="brand-item brand-bbc">
+                    <span>B</span><span>B</span><span>C</span>
+                </div>
+                <div class="brand-item brand-deloitte">Deloitte.</div>
+                <div class="brand-item brand-unilever">Unilever</div>
+            </div>
+            <!-- Group 3 -->
+            <div class="ticker-group" aria-hidden="true">
+                <div class="brand-item brand-bbc">
+                    <span>B</span><span>B</span><span>C</span>
+                </div>
+                <div class="brand-item brand-deloitte">Deloitte.</div>
+                <div class="brand-item brand-unilever">Unilever</div>
+            </div>
+            <!-- Group 4 -->
+            <div class="ticker-group" aria-hidden="true">
+                <div class="brand-item brand-bbc">
+                    <span>B</span><span>B</span><span>C</span>
+                </div>
+                <div class="brand-item brand-deloitte">Deloitte.</div>
+                <div class="brand-item brand-unilever">Unilever</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SUASANA & PRODUK KAMI SECTION -->
+    <section class="gallery-section">
+        <div class="gallery-header">
+            <h2 class="gallery-title">Suasana & Produk Kami</h2>
+            <p class="gallery-description">
+                Kami menghadirkan pengalaman berkesan melalui kombinasi sajian kuliner berkualitas dan suasana tempat yang nyaman. 
+                Setiap hidangan pastry dan racikan kopi yang disajikan dibuat dengan dedikasi tinggi oleh para talenta muda berbakat, 
+                mengikuti standar profesional untuk memastikan kepuasan terbaik bagi setiap pengunjung.
+            </p>
+        </div>
+
+        <div class="gallery-grid">
+            <!-- Foto 1 -->
+            <div class="gallery-item">
+                <!-- Nanti masukkan tag img di sini, contoh: <img src="assets/suasana1.jpg" alt="Produksi Pastry"> -->
+                <div class="gallery-placeholder">
+                    <i class="fa-regular fa-image"></i>
+                    <span>Foto 1 (Produksi Pastry)</span>
+                </div>
+            </div>
+
+            <!-- Foto 2 -->
+            <div class="gallery-item">
+                <!-- Nanti masukkan tag img di sini, contoh: <img src="assets/suasana2.jpg" alt="Barista & Kopi"> -->
+                <div class="gallery-placeholder">
+                    <i class="fa-regular fa-image"></i>
+                    <span>Foto 2 (Barista & Kopi)</span>
+                </div>
+            </div>
+
+            <!-- Foto 3 -->
+            <div class="gallery-item">
+                <!-- Nanti masukkan tag img di sini, contoh: <img src="assets/suasana3.jpg" alt="Interior Cafe"> -->
+                <div class="gallery-placeholder">
+                    <i class="fa-regular fa-image"></i>
+                    <span>Foto 3 (Suasana Cafe)</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DAFTAR MENU SECTION -->
+    <section class="menu-section">
+        <h2 class="menu-section-title">Daftar Menu</h2>
+        <p class="menu-section-desc">
+            Jelajahi aneka pilihan roti segar dan kue lezat yang dipanggang setiap hari dengan bahan berkualitas tinggi, 
+            serta racikan kopi pilihan untuk melengkapi setiap momen Anda.
+        </p>
+
+        <!-- Filter Tabs (Sesuai Desain: Garis Bawah & Pembatas Vertikal) -->
+        <div class="menu-tabs">
+            <button class="menu-tab-btn active" data-category="all">Semua</button>
+            <button class="menu-tab-btn" data-category="makanan">Makanan</button>
+            <button class="menu-tab-btn" data-category="minuman">Minuman</button>
+        </div>
+
+        <!-- Kategori 1: Makanan -->
+        <div class="menu-category" data-category="makanan">
+            <div class="menu-grid">
+                <div data-card data-name="Roti Pisang Coklat" data-price="Rp 5.000" data-rating="4,8" data-sold="1.238 Sold" data-icon="fa-bread-slice"></div>
+                <div data-card data-name="Roti Sisir" data-price="Rp 10.000" data-rating="4,8" data-sold="1.238 Sold" data-icon="fa-bread-slice"></div>
+                <div data-card data-name="Roti Gulung Abon" data-price="Rp 5.000" data-rating="4,5" data-sold="620 Sold" data-icon="fa-bread-slice"></div>
+                <div data-card data-name="Roti Kasur" data-price="Rp 14.000" data-rating="4,6" data-sold="238 Sold" data-icon="fa-bread-slice"></div>
+                <div data-card data-name="Roti Kenong" data-price="Rp 12.000" data-rating="4,6" data-sold="238 Sold" data-icon="fa-bread-slice"></div>
+            </div>
+        </div>
+
+        <!-- Kategori 2: Minuman -->
+        <div class="menu-category" data-category="minuman">
+            <div class="menu-grid">
+                <div data-card data-name="Cappucino Panas" data-price="Rp 15.000" data-rating="4,8" data-sold="1.238 Sold" data-icon="fa-mug-hot"></div>
+                <div data-card data-name="Kopi Tubruk" data-price="Rp 8.000" data-rating="4,8" data-sold="1.238 Sold" data-icon="fa-mug-hot"></div>
+                <div data-card data-name="Kopi Susu Panas" data-price="Rp 12.500" data-rating="4,5" data-sold="620 Sold" data-icon="fa-mug-hot"></div>
+                <div data-card data-name="Americano" data-price="Rp 10.000" data-rating="4,6" data-sold="238 Sold" data-icon="fa-glass-water"></div>
+                <div data-card data-name="Filter Kopi" data-price="Rp 8.000" data-rating="4,6" data-sold="238 Sold" data-icon="fa-filter"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION (AUTO-SLIDING CAROUSEL) -->
+    <section class="testimonials-section">
+        <div class="testimonials-header">
+            <h2 class="testimonials-title">What Our Clients Says</h2>
+            <p class="testimonials-subtitle">Neque, Pulvinar Vestibulum Non Aliquam.</p>
+        </div>
+
+        <div class="testimonials-slider-wrapper">
+            <div class="testimonials-track">
+                <!-- Review 1 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        Tempatnya Nyaman Untuk Mengerjakan Tugas, Ada Berbagai Macam Roti Dengan Harga Terjangkau
+                    </p>
+                    <div class="testimonial-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <span class="testimonial-author">Meowme</span>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        Merupakan Bagian Dari Polije, Menyediakan Berbagai Roti Dan Minuman, Produksi Dan Manajemen Terdiri Dari Mahasiswa Dan Dosen Polije Sendiri. Tefa Juga Menerima Siswa/I SMK Yang Akan Melaksanakan PKL Dan Belajar Produksi Lebih Lanjut
+                    </p>
+                    <div class="testimonial-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <span class="testimonial-author">Darma Aditya Nursalam</span>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        Roti Buatan Sendiri Dan Rasanya Enak Sekali, Mantapp Polll. Banyak Varian Rasa Dari Yang Manis Sampe Yang Asin. Next Harus Cobain Lagiiiiii
+                    </p>
+                    <div class="testimonial-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <span class="testimonial-author">Informan145 Informan145</span>
+                </div>
+
+                <!-- Review 4 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        Kopi susunya pas banget dipadukan sama roti pisang coklat. Pelayanannya juga sangat ramah dan tempatnya bersih!
+                    </p>
+                    <div class="testimonial-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <span class="testimonial-author">Siti Nurhaliza</span>
+                </div>
+
+                <!-- Review 5 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        Cocok banget buat langganan sarapan sebelum ngampus. Roti kasurnya lembut dan harganya ramah di kantong mahasiswa.
+                    </p>
+                    <div class="testimonial-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <span class="testimonial-author">Budi Santoso</span>
+                </div>
+
+                <!-- Review 6 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        Pastry-nya berasa premium tapi harga tetap bersahabat. Recommended banget buat nongkrong sore santai!
+                    </p>
+                    <div class="testimonial-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <span class="testimonial-author">Rina Wijaya</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slider Controls -->
+        <div class="slider-controls">
+            <button class="slider-btn slider-prev" aria-label="Previous Testimonial"><i class="fa-solid fa-chevron-left"></i></button>
+            <div class="slider-dots"></div>
+            <button class="slider-btn slider-next" aria-label="Next Testimonial"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+    </section>
+
+    <!-- Komponen Footer -->
+    <div data-component="components/footer.html"></div>
+
+    <!-- Script Pemanggil Komponen -->
+    <script src="components/js/script.js"></script>
+</body>
+</html>

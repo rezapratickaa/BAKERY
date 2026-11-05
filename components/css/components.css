@@ -1,0 +1,339 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* ==========================================
+   NAVBAR COMPONENT STYLES
+   ========================================== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 60px;
+    background-color: #522C1A;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* --- Left Nav / Logo --- */
+.navbar .left-nav {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .left-nav h1 {
+    color: #EBD8BB;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.navbar .left-nav h1:hover {
+    color: #ffffff;
+    transform: scale(1.02);
+}
+
+/* --- Center Nav / Menu Links --- */
+.navbar .center-nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+}
+
+.navbar .center-nav li {
+    list-style: none;
+}
+
+.navbar .center-nav a {
+    text-decoration: none;
+    color: #EBD8BB;
+    font-size: 15px;
+    font-weight: 500;
+    position: relative;
+    padding: 6px 0;
+    letter-spacing: 0.3px;
+    transition: color 0.3s ease;
+}
+
+.navbar .center-nav a:hover,
+.navbar .center-nav a.active {
+    color: #ffffff;
+}
+
+/* Animasi garis bawah halus saat hover */
+.navbar .center-nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #EBD8BB;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.navbar .center-nav a:hover::after,
+.navbar .center-nav a.active::after {
+    width: 100%;
+}
+
+/* --- Right Nav / Search, Cart & Avatar --- */
+.navbar .right-nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: #EBD8BB;
+}
+
+/* Search Box */
+.search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+input::placeholder,
+textarea::placeholder{
+    color: #EBD8BB;
+}
+
+.search-box input {
+    width: 180px;
+    padding: 8px 14px 8px 36px;
+    font-size: 13px;
+    
+    color: #333333;
+    background-color: #522C1A;
+    border: 1px solid;
+    border-color: #8C6A54;
+    border-radius: 18px;
+    outline: none;
+    transition: width 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-box input:focus {
+    width: 220px;
+    background-color: #522C1A;
+    border-color: #EBD8BB;
+    box-shadow: 0 0 10px rgba(235, 216, 187, 0.45);
+}
+
+.search-box i {
+    position: absolute;
+    left: 12px;
+    color: #EBD8BB;
+    font-size: 14px;
+    pointer-events: none;
+}
+
+/* Tombol Keranjang / Cart */
+.cart-btn {
+    position: relative;
+    color: #EBD8BB;
+    font-size: 18px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cart-btn:hover {
+    color: #ffffff;
+    background-color: rgba(235, 216, 187, 0.18);
+    transform: translateY(-1px);
+}
+
+/* Avatar Pengguna */
+.circle-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #EBD8BB;
+    object-fit: cover;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.circle-avatar:hover {
+    transform: scale(1.08);
+    border-color: #ffffff;
+}
+
+/* ==========================================
+   RESPONSIVE (TABLET & MOBILE)
+   ========================================== */
+@media (max-width: 960px) {
+    .navbar {
+        padding: 16px 30px;
+    }
+    .navbar .center-nav {
+        gap: 20px;
+    }
+    .search-box input {
+        width: 140px;
+    }
+    .search-box input:focus {
+        width: 170px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-wrap: wrap;
+        padding: 14px 20px;
+        gap: 12px;
+    }
+    .navbar .center-nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        gap: 20px;
+        padding-top: 10px;
+        border-top: 1px solid rgba(235, 216, 187, 0.2);
+    }
+    .navbar .left-nav h1 {
+        font-size: 22px;
+    }
+}
+
+
+/* ==========================================
+   FOOTER COMPONENT STYLES
+   ========================================== */
+.footer {
+    background-color: #522C1A;
+    color: #EBD8BB;
+    padding: 60px 80px 30px;
+    margin-top: auto;
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(235, 216, 187, 0.15);
+}
+
+.footer-brand {
+    max-width: 320px;
+}
+
+.footer-logo {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin-bottom: 16px;
+    color: #EBD8BB;
+}
+
+.footer-brand p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(235, 216, 187, 0.8);
+    margin-bottom: 24px;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 12px;
+}
+
+.footer-socials a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: rgba(235, 216, 187, 0.15);
+    color: #EBD8BB;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.footer-socials a:hover {
+    background-color: #EBD8BB;
+    color: #522C1A;
+}
+
+.footer-col h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #EBD8BB;
+}
+
+.footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-col ul a {
+    color: rgba(235, 216, 187, 0.8);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.footer-col ul a:hover {
+    color: #ffffff;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 24px;
+    font-size: 13px;
+    color: rgba(235, 216, 187, 0.8);
+}
+
+.footer-legal {
+    display: flex;
+    gap: 30px;
+}
+
+.footer-legal a {
+    color: rgba(235, 216, 187, 0.8);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-legal a:hover {
+    color: #ffffff;
+}
+
+@media (max-width: 900px) {
+    .footer {
+        padding: 40px 30px 20px;
+    }
+    .footer-top {
+        flex-wrap: wrap;
+        gap: 30px;
+    }
+    .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+    }
+}
+
