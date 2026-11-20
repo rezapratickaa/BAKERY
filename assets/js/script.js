@@ -1,4 +1,4 @@
-﻿function loadComponent(targetSelector, filePath) {
+function loadComponent(targetSelector, filePath) {
     fetch(filePath)
         .then(response => {
             if (!response.ok) {
@@ -16,6 +16,18 @@
 
             if (componentElement) {
                 target.replaceWith(componentElement);
+                if (filePath.includes('navbar')) {
+                    const currentPage = window.location.pathname.split('/').pop() || 'home.html';
+                    const navLinks = componentElement.querySelectorAll('.center-nav a');
+                    navLinks.forEach(link => {
+                        const href = link.getAttribute('href');
+                        if (href === currentPage || (currentPage === '' && href === 'home.html')) {
+                            link.classList.add('active');
+                        } else {
+                            link.classList.remove('active');
+                        }
+                    });
+                }
             } else {
                 target.innerHTML = html;
             }
@@ -172,7 +184,7 @@ function loadCardComponents() {
     const els = document.querySelectorAll('[data-card]');
     if (!els.length) return Promise.resolve();
     const load = _cardTpl ? Promise.resolve(_cardTpl)
-        : fetch('components/card.html').then(r => r.text()).then(t => { _cardTpl = t; return t; });
+        : fetch('assets/components/card.html').then(r => r.text()).then(t => { _cardTpl = t; return t; });
     return load.then(tpl => {
         els.forEach(el => {
             const img = el.dataset.img;
@@ -196,6 +208,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initTestimonialsSlider();
 
     if (document.getElementById('navbar') && !document.querySelector('[data-component*="navbar"]')) {
-        loadComponent('#navbar', 'components/navbar.html');
+        loadComponent('#navbar', 'assets/components/navbar.html');
     }
 });

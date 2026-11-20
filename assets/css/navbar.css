@@ -1,0 +1,218 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 30px;
+    background-color: #522C1A;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    font-family: 'DM Sans', sans-serif, 'Segoe UI', Tahoma, sans-serif;
+}
+
+/* ============================================
+   LEFT NAV / LOGO / BRAND
+   ============================================ */
+.navbar .left-nav {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.navbar .left-nav h1 {
+    color: #EBD8BB;
+    font-family: 'Playfair Display', Georgia, serif; /* Font serif elegan untuk brand */
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar .left-nav h1:hover {
+    color: #ffffff;
+    transform: scale(1.02);
+}
+
+.navbar .left-nav img {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* ============================================
+   CENTER NAV / MENU LINKS
+   ============================================ */
+.navbar .center-nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar .center-nav li {
+    list-style: none;
+}
+
+.navbar .center-nav a {
+    text-decoration: none;
+    color: #EBD8BB;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    position: relative;
+    padding: 6px 0;
+    transition: color 0.3s ease;
+}
+
+.navbar .center-nav a:hover,
+.navbar .center-nav a.active {
+    color: #ffffff;
+}
+
+/* Garis bawah animasi hover */
+.navbar .center-nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #EBD8BB;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.navbar .center-nav a:hover::after,
+.navbar .center-nav a.active::after {
+    width: 100%;
+}
+
+/* ============================================
+   RIGHT NAV / SEARCH, CART & AVATAR
+   ============================================ */
+.navbar .right-nav {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+    color: #EBD8BB;
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* Search Box */
+.navbar .search-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: rgba(235, 216, 187, 0.12);
+    border: 1px solid rgba(235, 216, 187, 0.3);
+    border-radius: 20px;
+    padding: 9px 14px;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.navbar .search-box:hover,
+.navbar .search-box:focus-within {
+    border-color: #EBD8BB;
+    background-color: rgba(235, 216, 187, 0.2);
+}
+
+.navbar .search-box i {
+    color: #EBD8BB;
+    font-size: 14px;
+}
+
+.navbar .search-box input {
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #EBD8BB;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    width: 120px;
+    transition: width 0.3s ease;
+}
+
+.navbar .search-box input::placeholder {
+    color: rgba(235, 216, 187, 0.6);
+    font-family: 'DM Sans', sans-serif;
+}
+
+.navbar .search-box input:focus {
+    width: 150px;
+}
+
+/* Cart Button */
+.navbar .cart-btn {
+    color: #EBD8BB;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.navbar .cart-btn:hover {
+    color: #ffffff;
+    transform: scale(1.15);
+}
+
+/* Avatar */
+.navbar .circle-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #EBD8BB;
+    cursor: pointer;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.navbar .circle-avatar:hover {
+    border-color: #ffffff;
+    transform: scale(1.08);
+}
+
+/* ==========================================
+   RESPONSIVE (TABLET & MOBILE)
+   ========================================== */
+@media (max-width: 960px) {
+    .navbar {
+        padding: 16px 30px;
+    }
+    .navbar .center-nav {
+        gap: 20px;
+    }
+    .search-box input {
+        width: 140px;
+    }
+    .search-box input:focus {
+        width: 170px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-wrap: wrap;
+        padding: 14px 20px;
+        gap: 12px;
+    }
+    .navbar .center-nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        gap: 20px;
+        padding-top: 10px;
+        border-top: 1px solid rgba(235, 216, 187, 0.2);
+    }
+    .navbar .left-nav h1 {
+        font-size: 22px;
+    }
+}
+
+
