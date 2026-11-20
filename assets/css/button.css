@@ -1,0 +1,38 @@
+.btn-primary-pill {
+    display: inline-block;
+    background-color: #A36E4A;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 12px 28px;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: background-color 0.25s ease, transform 0.2s ease;
+    cursor: pointer;
+}
+
+.btn-primary-pill:hover {
+    background-color: #8C5735;
+    transform: translateY(-2px);
+}
+
+.btn-outline-pill {
+    display: inline-block;
+    background-color: transparent;
+    border: 1px solid rgba(235, 216, 187, 0.45);
+    color: #EBD8BB;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 12px 28px;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    cursor: pointer;
+}
+
+.btn-outline-pill:hover {
+    border-color: #EBD8BB;
+    background-color: rgba(235, 216, 187, 0.12);
+    transform: translateY(-2px);
+    color: #ffffff;
+}
