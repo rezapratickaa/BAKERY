@@ -128,7 +128,7 @@ h1, h2, h3, h4, .about-hero-title, .about-profile-title, .about-team-title {
    ABOUT PAGE - PROFIL PERUSAHAAN / SEJARAH
    ========================================== */
 .about-profile {
-    background-color: #ffffff;
+    background-color: #FAF4EC   ;
     padding: 80px 24px 100px;
 }
 
@@ -290,21 +290,108 @@ h1, h2, h3, h4, .about-hero-title, .about-profile-title, .about-team-title {
     transform: scale(1.03);
 }
 
-@media (max-width: 768px) {
-    .about-team {
-        padding: 60px 20px 80px;
-    }
+/* ==========================================
+   ABOUT PAGE - PETA LOKASI SECTION
+   ========================================== */
+.about-location {
+    background-color: #FAF4EC;
+    padding: 90px 24px 100px;
+}
 
-    .about-team-grid {
+.about-location-header {
+    max-width: 760px;
+    margin: 0 auto 50px auto;
+    text-align: center;
+}
+
+.about-location-tag {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #8C6A54;
+    margin-bottom: 12px;
+}
+
+.about-location-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: #1F1815;
+    line-height: 1.3;
+}
+
+.about-location-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.about-location-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.about-location-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.about-location-icon {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #522C1A;
+    font-size: 18px;
+    margin-top: 2px;
+}
+
+.about-location-item strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+    color: #1F1815;
+    margin-bottom: 4px;
+}
+
+.about-location-item p {
+    font-size: 14px;
+    line-height: 1.65;
+    color: #5A524D;
+}
+
+.about-location-photo {
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 28px rgba(82, 44, 26, 0.10);
+}
+
+.about-location-map {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    display: block;
+    border: 0;
+}
+
+@media (max-width: 860px) {
+    .about-location-inner {
         grid-template-columns: 1fr;
         gap: 36px;
     }
 
-    .about-team-title {
-        font-size: 28px;
+    .about-location-photo {
+        order: -1;
     }
 
-    .team-card-header {
-        min-height: auto;
+    .about-location-title {
+        font-size: 28px;
     }
 }

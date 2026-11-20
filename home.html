@@ -19,18 +19,11 @@
     <!-- Komponen Navbar -->
     <div data-component="assets/components/navbar.html"></div>
 
-    <svg width="0" height="0" style="position: absolute;">
+    <svg width="0" height="0" style="position:absolute;" aria-hidden="true">
         <defs>
             <clipPath id="hero-shape" clipPathUnits="objectBoundingBox">
-                <path d="M 0.22,0 
-                C 0.12,0.06 0.00,0.15 0.02,0.28 
-                C 0.04,0.40 0.20,0.44 0.22,0.56 
-                C 0.24,0.66 0.16,0.74 0.06,0.80 
-                C 0.01,0.84 0.00,0.92 0.08,0.97
-                C 0.12,0.99 0.17,1.00 0.22,1 
-                L 1,1 
-                L 1,0 
-                Z" />
+                <!-- Single clean concave arc — satu kurva, simetris, intentional -->
+                <path d="M 0.18,0 C 0.03,0.32 0.03,0.68 0.18,1 L 1,1 L 1,0 Z" />
             </clipPath>
         </defs>
     </svg>
@@ -38,26 +31,23 @@
     <!-- HERO SECTION -->
     <section class="hero">
         <div class="hero-content">
-            <h1 class="hero-title">Tefa Bakery And Coffe</h1>
+            <h1 class="hero-title">Tefa Bakery<br>&amp; Pastry</h1>
             <p class="hero-description">
-                Tefa Bakery And Pastry adalah toko roti dan kue berbasis Teaching Factory 
-                (pembelajaran berbasis produksi/industri nyata) yang menyajikan produk 
-                berkualitas tinggi dengan cita rasa lezat.
+                Tefa Bakery And Pastry adalah  toko roti dan kue berbasis Teaching Factory yang menyajikan produk berkualitas tinggi dengan cita rasa lezat.
             </p>
+            <div class="hero-actions">
+                <a href="#menu" class="btn-hero-primary">Lihat Menu</a>
+                <a href="about.html" class="btn-hero-outline">Tentang Kami</a>
+            </div>
         </div>
 
         <div class="hero-image-area">
+            <div class="hero-image-tint" aria-hidden="true"></div>
             <div class="hero-image-wrapper">
                 <img src="assets/image/foto_suasana.jpg"
                      alt="Baker memasukkan roti ke dalam oven di dapur Tefa Bakery"
                      width="736" height="1104"
                      fetchpriority="high">
-                <!-- GAMBAR HERO (Kosongkan dulu, nanti Anda bisa isi seperti ini): -->
-                <!-- <img src="assetss/nama_foto.jpg" alt="Tefa Bakery And Pastry"> -->
-                <div class="hero-placeholder">
-                    <i class="fa-regular fa-image"></i>
-                    <p>Area Foto Hero</p>
-                </div>
             </div>
         </div>
     </section>
