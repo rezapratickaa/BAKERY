@@ -19,15 +19,6 @@
     <!-- Komponen Navbar -->
     <div data-component="assets/components/navbar.html"></div>
 
-    <svg width="0" height="0" style="position:absolute;" aria-hidden="true">
-        <defs>
-            <clipPath id="hero-shape" clipPathUnits="objectBoundingBox">
-                <!-- Single clean concave arc — satu kurva, simetris, intentional -->
-                <path d="M 0.18,0 C 0.03,0.32 0.03,0.68 0.18,1 L 1,1 L 1,0 Z" />
-            </clipPath>
-        </defs>
-    </svg>
-
     <!-- HERO SECTION -->
     <section class="hero">
         <div class="hero-content">
@@ -42,11 +33,10 @@
         </div>
 
         <div class="hero-image-area">
-            <div class="hero-image-tint" aria-hidden="true"></div>
             <div class="hero-image-wrapper">
-                <img src="assets/image/foto_suasana.jpg"
-                     alt="Baker memasukkan roti ke dalam oven di dapur Tefa Bakery"
-                     width="736" height="1104"
+                <img src="assets/image/foto_hero_home.png"
+                     alt="Siswa TEFA Bakery &amp; Pastry sedang memproduksi roti dan pastry"
+                     width="684" height="582"
                      fetchpriority="high">
             </div>
         </div>
@@ -135,7 +125,7 @@
     </section>
 
     <!-- DAFTAR MENU SECTION -->
-    <section class="menu-section">
+    <section class="menu-section" id="menu">
         <h2 class="menu-section-title">Daftar Menu</h2>
         <p class="menu-section-desc">
             Jelajahi aneka pilihan roti segar dan kue lezat yang dipanggang setiap hari dengan bahan berkualitas tinggi, 
@@ -144,30 +134,18 @@
 
         <!-- Filter Tabs (Sesuai Desain: Garis Bawah & Pembatas Vertikal) -->
         <div class="menu-tabs">
-            <button class="menu-tab-btn active" data-category="all">Semua</button>
-            <button class="menu-tab-btn" data-category="makanan">Makanan</button>
+            <button class="menu-tab-btn active" data-category="makanan">Makanan</button>
             <button class="menu-tab-btn" data-category="minuman">Minuman</button>
         </div>
 
         <!-- Kategori 1: Makanan -->
         <div class="menu-category" data-category="makanan">
-            <div class="menu-grid">
-                <div data-card data-name="Roti Pisang Coklat" data-price="Rp 5.000" data-rating="4,8" data-sold="1.238 Sold" data-icon="fa-bread-slice" data-img="assets/image/foto_produk1.png"></div>
-                <div data-card data-name="Roti Sisir" data-price="Rp 10.000" data-rating="4,8" data-sold="1.238 Sold" data-icon="fa-bread-slice" data-img="assets/image/foto_produk2.png"></div>
-                <div data-card data-name="Roti Gulung Abon" data-price="Rp 5.000" data-rating="4,5" data-sold="620 Sold" data-icon="fa-bread-slice" data-img="assets/image/foto_produk3.png"></div>
-                <div data-card data-name="Roti Kasur" data-price="Rp 14.000" data-rating="4,6" data-sold="238 Sold" data-icon="fa-bread-slice" data-img="assets/image/foto_produk4.png"></div>
-                <div data-card data-name="Roti Kenong" data-price="Rp 12.000" data-rating="4,6" data-sold="238 Sold" data-icon="fa-bread-slice" data-img="assets/image/foto_produk5.png"></div>
-            </div>
+            <div class="menu-grid" data-render-category="makanan"></div>
         </div>
 
         <!-- Kategori 2: Minuman -->
         <div class="menu-category" data-category="minuman">
-            <div class="menu-grid">
-                <div data-card data-name="Cappucino Panas" data-price="Rp 15.000" data-rating="4,8" data-sold="1.238 Sold" data-icon="fa-mug-hot" data-img="assets/image/foto_minuman1.png"></div>
-                <div data-card data-name="Kopi Tubruk" data-price="Rp 8.000" data-rating="4,8" data-sold="1.238 Sold" data-icon="fa-mug-hot" data-img="assets/image/foto_minuman2.png"></div>
-                <div data-card data-name="Kopi Susu Panas" data-price="Rp 12.500" data-rating="4,5" data-sold="620 Sold" data-icon="fa-mug-hot" data-img="assets/image/foto_minuman3.png"></div>
-                <div data-card data-name="Americano" data-price="Rp 10.000" data-rating="4,6" data-sold="238 Sold" data-icon="fa-glass-water" data-img="assets/image/foto_minuman4.png"></div>
-            </div>
+            <div class="menu-grid" data-render-category="minuman"></div>
         </div>
     </section>
 
@@ -301,7 +279,8 @@
     <!-- Komponen Footer -->
     <div data-component="assets/components/footer.html"></div>
 
-    <!-- Script Pemanggil Komponen -->
+    <!-- Script Database Produk & Pemanggil Komponen -->
+    <script src="assets/js/products.js"></script>
     <script src="assets/js/script.js"></script>
 </body>
 </html>

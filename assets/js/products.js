@@ -1,0 +1,131 @@
+/**
+ * Database Produk TEFA Bakery & Pastry
+ * Digunakan secara terpusat untuk render menu card di home.html
+ * dan render dinamis di detail_product.html via URL Query Parameter (?id=...)
+ */
+const PRODUCTS_DATA = [
+    // ==========================================
+    // KATEGORI: MAKANAN (ROTI & PASTRY)
+    // ==========================================
+    {
+        id: 'roti-pizza',
+        name: 'Roti Pizza',
+        category: 'makanan',
+        price: 'Rp 5.000',
+        rawPrice: 5000,
+        rating: '4.5',
+        sold: '1.238 Sold',
+        image: 'assets/image/foto_roti_pizza.jpg',
+        description: 'Roti Pizza ini memiliki adonan roti yang lembut di dalam namun tetap bertekstur saat digigit, dipadukan dengan saus tomat khas pizza bercita rasa gurih-manis yang meresap sempurna. Hidangan ini semakin istimewa berkat topping melimpah berupa potongan sosis lezat, irisan bawang bombai segar, cabai atau paprika, serta taburan keju lumer yang menggugah selera, ditambah sentuhan daun parsley kering di atasnya untuk memperkaya aroma harum dan tampilan yang lebih estetik.',
+    },
+    {
+        id: 'roti-pisang-coklat',
+        name: 'Roti Pisang Coklat',
+        category: 'makanan',
+        price: 'Rp 5.000',
+        rawPrice: 5000,
+        rating: '4.8',
+        sold: '1.238 Sold',
+        image: 'assets/image/foto_produk1.png',
+        description: 'Perpaduan klasik antara manisnya pisang raja pilihan yang matang sempurna dengan lumeran coklat lezat berkualitas premium. Dibalut dengan adonan roti yang empuk, wangi mentega harum, dan dipanggang hingga berwarna cokelat keemasan menggoda.',
+    },
+    {
+        id: 'roti-sisir',
+        name: 'Roti Sisir',
+        category: 'makanan',
+        price: 'Rp 10.000',
+        rawPrice: 10000,
+        rating: '4.8',
+        sold: '1.238 Sold',
+        image: 'assets/image/foto_produk2.png',
+        description: 'Roti sisir legendaris dengan aroma mentega Belanda (roombutter) yang sangat harum dan rasa manis-gurih khas yang nostalgik. Teksturnya sangat lembut berlapis-lapis dan lumer saat disantap, cocok dinikmati bersama secangkir teh hangat atau kopi.',
+    },
+    {
+        id: 'roti-gulung-abon',
+        name: 'Roti Gulung Abon',
+        category: 'makanan',
+        price: 'Rp 5.000',
+        rawPrice: 5000,
+        rating: '4.5',
+        sold: '620 Sold',
+        image: 'assets/image/foto_produk3.png',
+        description: 'Roti gulung lembut dengan olesan saus mayones spesial yang gurih, bertabur abon sapi berlimpah di setiap sisinya serta irisan daun bawang dan cabai merah kering yang memberikan aksen rasa gurih, wangi, dan sedikit pedas nikmat.',
+    },
+    {
+        id: 'roti-kasur',
+        name: 'Roti Kasur',
+        category: 'makanan',
+        price: 'Rp 14.000',
+        rawPrice: 14000,
+        rating: '4.6',
+        sold: '238 Sold',
+        image: 'assets/image/foto_produk4.png',
+        description: 'Roti kasur empuk dengan serat halus berpori rapat yang mengembang sempurna. Disajikan dalam potongan kotak mudah sobek dengan kombinasi filling manis keju dan coklat di dalamnya. Pilihan favorit untuk sarapan bersama keluarga.',
+    },
+    {
+        id: 'roti-kenong',
+        name: 'Roti Kenong',
+        category: 'makanan',
+        price: 'Rp 12.000',
+        rawPrice: 12000,
+        rating: '4.6',
+        sold: '238 Sold',
+        image: 'assets/image/foto_produk5.png',
+        description: 'Roti tradisional berbentuk lingkaran kenong dengan tekstur pulen dan cita rasa manis legit yang pas. Dibuat menggunakan ragi alami dan fermentasi teratur khas dapur Teaching Factory Polije untuk menjamin kualitas rasa otentik.',
+    },
+
+    // ==========================================
+    // KATEGORI: MINUMAN (COFFEE & BEVERAGES)
+    // ==========================================
+    {
+        id: 'cappucino-panas',
+        name: 'Cappucino Panas',
+        category: 'minuman',
+        price: 'Rp 15.000',
+        rawPrice: 15000,
+        rating: '4.8',
+        sold: '1.238 Sold',
+        image: 'assets/image/foto_minuman1.png',
+        description: 'Kombinasi seimbang antara shot espresso mantap dari biji kopi pilihan Politeknik Negeri Jember, susu segar yang disteam dengan lembut, dan lapisan microfoam tebal yang creamy. Taburan cokelat bubuk di atas foam menambah kenikmatan aroma.',
+    },
+    {
+        id: 'kopi-tubruk',
+        name: 'Kopi Tubruk',
+        category: 'minuman',
+        price: 'Rp 8.000',
+        rawPrice: 8000,
+        rating: '4.8',
+        sold: '1.238 Sold',
+        image: 'assets/image/foto_minuman2.png',
+        description: 'Kopi tubruk murni khas nusantara yang diseduh langsung dengan air mendidih bersuhu presisi. Mengeluarkan aroma khas karamel dan dark chocolate alami dari biji kopi lokal Jember yang dipanggang dengan tingkat medium-dark roast.',
+    },
+    {
+        id: 'kopi-susu-panas',
+        name: 'Kopi Susu Panas',
+        category: 'minuman',
+        price: 'Rp 12.500',
+        rawPrice: 12500,
+        rating: '4.5',
+        sold: '620 Sold',
+        image: 'assets/image/foto_minuman3.png',
+        description: 'Perpaduan kopi hitam aromatik dengan susu kental manis dan fresh milk yang menciptakan rasa manis legit dan gurih lembut. Minuman pendamping paling pas untuk menikmati aneka roti manis dan savory TEFA Bakery.',
+    },
+    {
+        id: 'americano',
+        name: 'Americano',
+        category: 'minuman',
+        price: 'Rp 10.000',
+        rawPrice: 10000,
+        rating: '4.6',
+        sold: '238 Sold',
+        image: 'assets/image/foto_minuman4.png',
+        description: 'Double shot espresso yang diencerkan dengan air panas bersuhu teratur, menghasilkan secangkir kopi hitam dengan body ringan, tingkat keasaman lembut, dan aftertaste manis alami tanpa gula. Cocok bagi pecinta kopi murni yang elegan.',
+    }
+];
+
+// Helper: Cari produk berdasarkan ID (slug)
+function getProductById(id) {
+    if (!id) return PRODUCTS_DATA[0];
+    const found = PRODUCTS_DATA.find(p => p.id === id);
+    return found || PRODUCTS_DATA[0];
+}

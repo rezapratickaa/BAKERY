@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Produk - TEFA Bakery &amp; Pastry</title>
+
+    <!-- Font Awesome Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Google Fonts: DM Sans & Playfair Display -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/detail_product.css">
+</head>
+<body>
+
+    <!-- Komponen Navbar -->
+    <div data-component="assets/components/navbar.html"></div>
+
+    <main>
+        <!-- NAVIGATION / BACK TO HOME OR MENU -->
+        <div class="product-nav-bar">
+            <a href="home.html#menu" class="btn-back-menu" id="btnBackMenu">
+                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                <span>Kembali ke Menu</span>
+            </a>
+        </div>
+
+        <!-- PRODUCT DETAIL SECTION -->
+        <section class="product-detail-section" aria-labelledby="product-name">
+            <div class="product-detail-grid">
+
+                <!-- LEFT: MEDIA -->
+                <div class="product-media">
+                    <div class="product-img-wrapper">
+                        <img id="productMainImg"
+                             src="assets/image/foto_roti_pizza.jpg"
+                             alt="Foto Produk"
+                             width="570" height="774"
+                             fetchpriority="high">
+                    </div>
+                </div>
+
+                <!-- RIGHT: PRODUCT INFO -->
+                <article class="product-info">
+                    <h1 class="product-title" id="productName">Roti Pizza</h1>
+
+                    <!-- Price & Rating Row -->
+                    <div class="product-meta-row">
+                        <div class="product-price" id="unitPriceDisplay">Rp 5.000</div>
+                        <div class="product-stats">
+                            <span class="stat-sold" id="statSold">1,238 Sold</span>
+                            <span class="stat-dot" aria-hidden="true">&bull;</span>
+                            <span class="stat-rating">
+                                <i class="fa-solid fa-star" aria-hidden="true"></i>
+                                <strong id="statRating">4.5</strong>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="product-desc-section">
+                        <h2 class="section-label">Deskripsi</h2>
+                        <p class="description-text" id="productDescription">
+                            Roti Pizza ini memiliki adonan roti yang lembut di dalam namun tetap bertekstur saat digigit, dipadukan dengan saus tomat khas pizza bercita rasa gurih-manis yang meresap sempurna.
+                        </p>
+                    </div>
+                    <!-- Actions: Stepper, Add to Cart, Wishlist -->
+                    <div class="product-actions-group">
+                        <div class="qty-stepper" role="group" aria-label="Jumlah pesanan">
+                            <button type="button" class="qty-btn" id="btnMinus" aria-label="Kurangi jumlah pesanan" disabled>
+                                <i class="fa-solid fa-minus" aria-hidden="true"></i>
+                            </button>
+                            <span class="qty-value" id="qtyDisplay" aria-live="polite">1</span>
+                            <button type="button" class="qty-btn" id="btnPlus" aria-label="Tambah jumlah pesanan">
+                                <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                            </button>
+                        </div>
+
+                        <button type="button" class="btn-add-cart" id="btnAddToCart">
+                            <span>Add to Cart</span>
+                            <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
+                        </button>
+
+                        <button type="button" class="btn-wishlist" id="btnWishlist" aria-label="Simpan ke favorit">
+                            <i class="fa-regular fa-heart" id="wishlistIcon" aria-hidden="true"></i>
+                        </button>
+                    </div>
+
+                    <!-- Live Subtotal -->
+                    <div class="order-summary-row">
+                        <span>Total Pesanan:</span>
+                        <strong id="subtotalDisplay">Rp 5.000</strong>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="cartToast" class="cart-toast" role="status" aria-live="polite" aria-hidden="true">
+        <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+        <span id="toastText">Produk berhasil ditambahkan ke keranjang!</span>
+    </div>
+
+    <!-- Komponen Footer -->
+    <div data-component="assets/components/footer.html"></div>
+
+    <!-- Script Database Produk & Pemanggil Komponen -->
+    <script src="assets/js/products.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script>
+        // Logika Render Dinamis & Interaktivitas Halaman Detail Produk
+        function initProductDetailPage() {
+            // 1. Ambil ID produk dari URL Parameter: ?id=nama-produk
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+
+            // 2. Ambil data produk dari PRODUCTS_DATA (fallback ke produk pertama jika tidak ditemukan)
+            const product = (typeof getProductById === 'function') 
+                ? getProductById(productId)
+                : ((typeof PRODUCTS_DATA !== 'undefined' && PRODUCTS_DATA.length > 0) ? PRODUCTS_DATA[0] : null);
+
+            if (!product) return;
+
+            let unitPrice = product.rawPrice || 5000;
+            let currentQty = 1;
+            let isWishlisted = false;
+
+            // DOM Elements
+            const breadcrumbCurrent = document.getElementById('breadcrumbCurrent');
+            const productMainImg = document.getElementById('productMainImg');
+            const productName = document.getElementById('productName');
+            const unitPriceDisplay = document.getElementById('unitPriceDisplay');
+            const statSold = document.getElementById('statSold');
+            const statRating = document.getElementById('statRating');
+            const productDescription = document.getElementById('productDescription');
+            const productHighlights = document.getElementById('productHighlights');
+            const btnMinus = document.getElementById('btnMinus');
+            const btnPlus = document.getElementById('btnPlus');
+            const qtyDisplay = document.getElementById('qtyDisplay');
+            const subtotalDisplay = document.getElementById('subtotalDisplay');
+            const btnAddToCart = document.getElementById('btnAddToCart');
+            const btnWishlist = document.getElementById('btnWishlist');
+            const wishlistIcon = document.getElementById('wishlistIcon');
+            const cartToast = document.getElementById('cartToast');
+            const toastText = document.getElementById('toastText');
+            let toastTimer = null;
+
+            function formatRupiah(number) {
+                return 'Rp ' + number.toLocaleString('id-ID');
+            }
+
+            // 3. Render Data Produk ke Halaman
+            document.title = `${product.name} - TEFA Bakery & Pastry`;
+            if (breadcrumbCurrent) breadcrumbCurrent.textContent = product.name;
+            if (productMainImg && product.image) {
+                productMainImg.src = product.image;
+                productMainImg.alt = product.name;
+            }
+            if (productName) productName.textContent = product.name;
+            if (unitPriceDisplay) unitPriceDisplay.textContent = product.price;
+            if (statSold) statSold.textContent = product.sold;
+            if (statRating) statRating.textContent = product.rating;
+            if (productDescription) productDescription.textContent = product.description;
+
+            // Render Highlights jika ada
+            if (productHighlights && Array.isArray(product.highlights)) {
+                productHighlights.innerHTML = product.highlights.map(h => `
+                    <div class="highlight-item">
+                        <i class="fa-solid ${h.icon}" aria-hidden="true"></i>
+                        <span>${h.text}</span>
+                    </div>
+                `).join('');
+            }
+
+            // 4. Update Jumlah & Subtotal
+            function updateQty(newQty) {
+                if (newQty < 1) return;
+                currentQty = newQty;
+                if (qtyDisplay) qtyDisplay.textContent = currentQty;
+                if (btnMinus) btnMinus.disabled = (currentQty <= 1);
+                const total = currentQty * unitPrice;
+                if (subtotalDisplay) subtotalDisplay.textContent = formatRupiah(total);
+            }
+
+            // Inisialisasi awal subtotal
+            updateQty(1);
+
+            // Toast Feedback
+            function showToast(message) {
+                if (!cartToast) return;
+                if (toastText) toastText.textContent = message;
+                cartToast.classList.add('show');
+                cartToast.setAttribute('aria-hidden', 'false');
+
+                if (toastTimer) clearTimeout(toastTimer);
+                toastTimer = setTimeout(() => {
+                    cartToast.classList.remove('show');
+                    cartToast.setAttribute('aria-hidden', 'true');
+                }, 3000);
+            }
+
+            // Event Listeners: Stepper Tambah & Kurang
+            if (btnMinus) {
+                btnMinus.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    updateQty(currentQty - 1);
+                });
+            }
+            if (btnPlus) {
+                btnPlus.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    updateQty(currentQty + 1);
+                });
+            }
+
+            // Event Listener: Add to Cart
+            if (btnAddToCart) {
+                btnAddToCart.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showToast(`${currentQty}x ${product.name} berhasil ditambahkan ke keranjang!`);
+                });
+            }
+
+            // Event Listener: Wishlist
+            if (btnWishlist) {
+                btnWishlist.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    isWishlisted = !isWishlisted;
+                    if (isWishlisted) {
+                        btnWishlist.classList.add('active');
+                        if (wishlistIcon) {
+                            wishlistIcon.classList.remove('fa-regular');
+                            wishlistIcon.classList.add('fa-solid');
+                        }
+                        showToast(`${product.name} disimpan ke favorit!`);
+                    } else {
+                        btnWishlist.classList.remove('active');
+                        if (wishlistIcon) {
+                            wishlistIcon.classList.remove('fa-solid');
+                            wishlistIcon.classList.add('fa-regular');
+                        }
+                        showToast(`${product.name} dihapus dari favorit.`);
+                    }
+                });
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initProductDetailPage);
+        } else {
+            initProductDetailPage();
+        }
+    </script>
+</body>
+</html>

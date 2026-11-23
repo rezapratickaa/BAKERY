@@ -1,4 +1,4 @@
-<div class="menu-card">
+<div class="menu-card" data-id="{{id}}" onclick="window.location.href='detail_product.html?id={{id}}'">
     <div class="menu-img-wrapper">
         {{image}}
     </div>
@@ -11,7 +11,7 @@
                 <span class="menu-sold">· {{sold}}</span>
             </div>
         </div>
-        <button class="menu-add-btn" title="Tambah ke keranjang">
+        <button class="menu-add-btn" type="button" title="Tambah ke keranjang" onclick="event.stopPropagation(); window.location.href='detail_product.html?id={{id}}'">
             <i class="fa-solid fa-plus"></i>
         </button>
     </div>

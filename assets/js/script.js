@@ -152,12 +152,29 @@ function initTestimonialsSlider() {
 }
 
 // ==========================================
-// Filter Tab Daftar Menu (Semua | Makanan | Minuman)
+// Filter Tab Daftar Menu (Makanan | Minuman)
 // ==========================================
 function initMenuFilter() {
     const tabBtns = document.querySelectorAll('.menu-tab-btn');
     const categories = document.querySelectorAll('.menu-category');
     if (tabBtns.length === 0 || categories.length === 0) return;
+
+    function applyFilter(selected) {
+        categories.forEach(cat => {
+            const catType = cat.getAttribute('data-category');
+            if (selected === 'all' || selected === catType) {
+                cat.style.display = 'block';
+            } else {
+                cat.style.display = 'none';
+            }
+        });
+    }
+
+    // Terapkan filter awal sesuai tombol aktif
+    const activeBtn = document.querySelector('.menu-tab-btn.active');
+    if (activeBtn) {
+        applyFilter(activeBtn.getAttribute('data-category'));
+    }
 
     tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -165,40 +182,68 @@ function initMenuFilter() {
             btn.classList.add('active');
 
             const selected = btn.getAttribute('data-category');
-            categories.forEach(cat => {
-                const catType = cat.getAttribute('data-category');
-                if (selected === 'all' || selected === catType) {
-                    cat.style.display = 'block';
-                } else {
-                    cat.style.display = 'none';
-                }
-            });
+            applyFilter(selected);
         });
     });
 }
 
 
-// Card Component Loader
+// ==========================================
+// Card Component Loader (Dinamis dari PRODUCTS_DATA atau data-card)
+// ==========================================
 let _cardTpl = null;
 function loadCardComponents() {
-    const els = document.querySelectorAll('[data-card]');
-    if (!els.length) return Promise.resolve();
-    const load = _cardTpl ? Promise.resolve(_cardTpl)
+    const containers = document.querySelectorAll('[data-render-category]');
+    const legacyEls = document.querySelectorAll('[data-card]');
+
+    if (!containers.length && !legacyEls.length) return Promise.resolve();
+
+    const loadTpl = _cardTpl
+        ? Promise.resolve(_cardTpl)
         : fetch('assets/components/card.html').then(r => r.text()).then(t => { _cardTpl = t; return t; });
-    return load.then(tpl => {
-        els.forEach(el => {
-            const img = el.dataset.img;
-            const icon = el.dataset.icon || 'fa-bread-slice';
-            const imageHtml = img
-                ? `<img src="${img}" alt="${el.dataset.name}">`
-                : `<div class="menu-img-placeholder"><i class="fa-solid ${icon}"></i></div>`;
-            el.outerHTML = tpl
-                .replace('{{name}}', el.dataset.name || '')
-                .replace('{{price}}', el.dataset.price || '')
-                .replace('{{rating}}', el.dataset.rating || '5,0')
-                .replace('{{sold}}', el.dataset.sold || '0 Sold')
-                .replace('{{image}}', imageHtml);
-        });
+
+    return loadTpl.then(tpl => {
+        // 1. Render dinamis dari array PRODUCTS_DATA ke dalam container
+        if (typeof PRODUCTS_DATA !== 'undefined' && containers.length > 0) {
+            containers.forEach(container => {
+                const category = container.getAttribute('data-render-category');
+                const list = PRODUCTS_DATA.filter(p => p.category === category);
+
+                container.innerHTML = list.map(p => {
+                    const imageHtml = p.image
+                        ? `<img src="${p.image}" alt="${p.name}">`
+                        : `<div class="menu-img-placeholder"><i class="fa-solid fa-bread-slice"></i></div>`;
+
+                    return tpl
+                        .replaceAll('{{id}}', p.id)
+                        .replace('{{name}}', p.name)
+                        .replace('{{price}}', p.price)
+                        .replace('{{rating}}', p.rating)
+                        .replace('{{sold}}', p.sold)
+                        .replace('{{image}}', imageHtml);
+                }).join('');
+            });
+        }
+
+        // 2. Dukungan jika masih ada elemen [data-card] manual
+        if (legacyEls.length > 0) {
+            legacyEls.forEach(el => {
+                const id = el.dataset.id || (el.dataset.name ? el.dataset.name.toLowerCase().replace(/\s+/g, '-') : 'product');
+                const img = el.dataset.img;
+                const icon = el.dataset.icon || 'fa-bread-slice';
+                const imageHtml = img
+                    ? `<img src="${img}" alt="${el.dataset.name}">`
+                    : `<div class="menu-img-placeholder"><i class="fa-solid ${icon}"></i></div>`;
+
+                el.outerHTML = tpl
+                    .replaceAll('{{id}}', id)
+                    .replace('{{name}}', el.dataset.name || '')
+                    .replace('{{price}}', el.dataset.price || '')
+                    .replace('{{rating}}', el.dataset.rating || '5,0')
+                    .replace('{{sold}}', el.dataset.sold || '0 Sold')
+                    .replace('{{image}}', imageHtml);
+            });
+        }
     });
 }
 // Jalankan saat halaman selesai dimuat

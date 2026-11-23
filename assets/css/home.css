@@ -30,8 +30,8 @@ h1, h2, h3, h4, .hero-title, .menu-section-title, .gallery-title, .testimonials-
 /* Kolom Teks / Konten Kiri */
 .hero-content {
     flex: 1;
-    padding: 80px 48px 80px 80px;
-    max-width: 580px;
+    padding: 80px 48px 80px 120px;
+    max-width: 620px;
     z-index: 2;
     display: flex;
     flex-direction: column;
@@ -104,53 +104,30 @@ h1, h2, h3, h4, .hero-title, .menu-section-title, .gallery-title, .testimonials-
 .hero-image-area {
     flex: 1.15;
     position: relative;
-    min-height: 669px;
-}
-
-/*
-  Gradasi warm dari kiri: FAF4EC solid → transparan ~30%
-  Fungsi: menyatukan tepi teks dan foto — bukan dekorasi
-  (hanya berlaku di sisi image-area karena clip-path memotong dari kiri)
-*/
-.hero-image-tint {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        to right,
-        #FAF4EC 0%,
-        rgba(250, 244, 236, 0.5) 25%,
-        transparent 55%
-    );
-    z-index: 2;
-    pointer-events: none;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    min-height: 560px;
+    overflow: hidden;
 }
 
 .hero-image-wrapper {
-    position: absolute;
-    inset: 0;
-    clip-path: url(#hero-shape);
-    -webkit-clip-path: url(#hero-shape);
-    overflow: hidden;
-    background-color: #D8CBB9;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
 }
 
 .hero-image-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
     display: block;
-}
-
-/* Ken-burns subtle — hanya jika user tidak keberatan motion */
-@media (prefers-reduced-motion: no-preference) {
-    .hero-image-wrapper img {
-        animation: hero-zoom 14s ease-in-out infinite alternate;
-    }
-    @keyframes hero-zoom {
-        from { transform: scale(1);    }
-        to   { transform: scale(1.06); }
-    }
+    width: 100%;
+    max-width: 684px;
+    height: auto;
+    max-height: 620px;
+    object-fit: contain;
+    object-position: right bottom;
 }
 
 /* Responsif Tablet */
@@ -160,6 +137,9 @@ h1, h2, h3, h4, .hero-title, .menu-section-title, .gallery-title, .testimonials-
     }
     .hero-title {
         font-size: 48px;
+    }
+    .hero-image-area {
+        min-height: 480px;
     }
 }
 
@@ -186,25 +166,25 @@ h1, h2, h3, h4, .hero-title, .menu-section-title, .gallery-title, .testimonials-
 
     .hero-image-area {
         width: 100%;
-        min-height: 300px;
+        min-height: auto;
         flex: none;
+        justify-content: center;
+        align-items: center;
     }
 
-    /* Mobile: clip-path lepas, foto full-width kotak */
     .hero-image-wrapper {
         position: relative;
         width: 100%;
-        height: 300px;
-        clip-path: none;
-        -webkit-clip-path: none;
+        height: auto;
+        justify-content: center;
     }
 
-    .hero-image-tint {
-        background: linear-gradient(
-            to bottom,
-            #FAF4EC 0%,
-            transparent 35%
-        );
+    .hero-image-wrapper img {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+        max-height: none;
+        object-fit: contain;
     }
 }
 
