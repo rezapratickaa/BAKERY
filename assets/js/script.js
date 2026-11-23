@@ -1,3 +1,99 @@
+// ============================================
+// CART MANAGEMENT (LOCALSTORAGE + BADGE)
+// ============================================
+const CART_STORAGE_KEY = 'bakery_cart';
+
+function getCart() {
+    try {
+        const data = localStorage.getItem(CART_STORAGE_KEY);
+        return data ? JSON.parse(data) : [];
+    } catch (e) {
+        return [];
+    }
+}
+
+function saveCart(cart) {
+    try {
+        localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+    } catch (e) {
+        console.error('Gagal menyimpan cart', e);
+    }
+    updateCartBadge();
+    window.dispatchEvent(new CustomEvent('cartUpdated', { detail: { cart } }));
+}
+
+function updateCartBadge() {
+    const badges = document.querySelectorAll('.cart-badge, #navbarCartBadge');
+    if (!badges.length) return;
+
+    const cart = getCart();
+    const totalCount = cart.reduce((sum, item) => sum + (parseInt(item.qty, 10) || 1), 0);
+
+    badges.forEach(badge => {
+        if (totalCount > 0) {
+            badge.textContent = totalCount > 99 ? '99+' : totalCount;
+            badge.hidden = false;
+            badge.style.display = 'flex';
+        } else {
+            badge.hidden = true;
+            badge.style.display = 'none';
+        }
+    });
+}
+
+function addToCart(productId, qty = 1) {
+    const count = parseInt(qty, 10) || 1;
+    let product = null;
+    if (typeof PRODUCTS_DATA !== 'undefined') {
+        product = PRODUCTS_DATA.find(p => p.id === productId);
+    }
+
+    if (!product) {
+        console.warn('Produk tidak ditemukan:', productId);
+        return;
+    }
+
+    const cart = getCart();
+    const existingIndex = cart.findIndex(item => item.id === productId);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].qty = (parseInt(cart[existingIndex].qty, 10) || 1) + count;
+    } else {
+        cart.push({
+            id: product.id,
+            name: product.name,
+            category: product.category,
+            price: product.price,
+            rawPrice: product.rawPrice,
+            image: product.image,
+            qty: count,
+            checked: true
+        });
+    }
+
+    saveCart(cart);
+}
+
+function showToast(message) {
+    let toast = document.getElementById('globalCartToast');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'globalCartToast';
+        toast.className = 'cart-toast';
+        toast.innerHTML = `<i class="fa-solid fa-circle-check" aria-hidden="true"></i><span class="toast-text"></span>`;
+        document.body.appendChild(toast);
+    }
+
+    const textEl = toast.querySelector('.toast-text');
+    if (textEl) textEl.textContent = message;
+
+    toast.classList.add('show');
+    clearTimeout(toast._timeout);
+    toast._timeout = setTimeout(() => {
+        toast.classList.remove('show');
+    }, 2800);
+}
+
 function loadComponent(targetSelector, filePath) {
     fetch(filePath)
         .then(response => {
@@ -27,6 +123,8 @@ function loadComponent(targetSelector, filePath) {
                             link.classList.remove('active');
                         }
                     });
+                    updateCartBadge();
+                    syncUserAuthUI();
                 }
             } else {
                 target.innerHTML = html;
@@ -239,13 +337,46 @@ function loadCardComponents() {
         }
     });
 }
+// Sync User Auth state in Navbar (shows username if logged in)
+function syncUserAuthUI() {
+    try {
+        const raw = localStorage.getItem('bakery_user');
+        if (!raw) return;
+        const u = JSON.parse(raw);
+        if (u && u.isLoggedIn) {
+            const btns = document.querySelectorAll('#openAuthModalBtn');
+            btns.forEach(btn => {
+                const span = btn.querySelector('span');
+                const displayName = (u.user || 'Akun Saya').split('@')[0];
+                if (span) {
+                    span.textContent = displayName.length > 9 ? displayName.slice(0, 9) + '..' : displayName;
+                }
+                btn.title = `Pesanan & Profil: ${u.user || 'User'}`;
+                btn.setAttribute('aria-label', `Buka pesanan ${u.user || 'User'}`);
+            });
+        }
+    } catch (e) {}
+}
+
 // Register & Login Modal Dialog (Native <dialog> + Backdrop Blur + Sliding Image)
 document.addEventListener('click', (e) => {
     const openBtn = e.target.closest('#openAuthModalBtn, [data-open-register], a[href="#register"], a[href="register.html"]');
     if (openBtn) {
+        e.preventDefault();
+        // Jika user sudah login, langsung bawa ke my_order.html
+        try {
+            const raw = localStorage.getItem('bakery_user');
+            if (raw) {
+                const u = JSON.parse(raw);
+                if (u && u.isLoggedIn) {
+                    window.location.href = 'my_order.html';
+                    return;
+                }
+            }
+        } catch (err) {}
+
         const dialog = document.getElementById('registerModal');
         if (dialog) {
-            e.preventDefault();
             const href = openBtn.getAttribute('href') || '';
             if (href.includes('register') || openBtn.dataset.openRegister !== undefined) {
                 dialog.classList.add('show-register');
@@ -254,6 +385,26 @@ document.addEventListener('click', (e) => {
             }
             dialog.showModal();
         }
+        return;
+    }
+
+    // Klik tombol Masuk Sekarang (karena tanpa database, langsung masuk ke my_order.html)
+    const loginSubmitBtn = e.target.closest('.login-panel .dialog-submit-btn');
+    if (loginSubmitBtn) {
+        e.preventDefault();
+        const dialog = document.getElementById('registerModal');
+        const emailInput = dialog ? dialog.querySelector('#login-email') : null;
+        const userVal = emailInput && emailInput.value.trim() ? emailInput.value.trim() : 'Ujang Merdeka';
+
+        localStorage.setItem('bakery_user', JSON.stringify({
+            isLoggedIn: true,
+            user: userVal,
+            email: userVal.includes('@') ? userVal : `${userVal.toLowerCase().replace(/\s+/g, '')}@gmail.com`,
+            loginTime: new Date().toISOString()
+        }));
+
+        if (dialog) dialog.close();
+        window.location.href = 'my_order.html';
         return;
     }
 
@@ -277,6 +428,49 @@ document.addEventListener('click', (e) => {
         if (dialog) dialog.close();
     } else if (dialog && e.target === dialog) {
         dialog.close();
+    }
+});
+
+// Tangani submit form login & register secara langsung ke my_order.html
+document.addEventListener('submit', (e) => {
+    const loginForm = e.target.closest('#loginForm, .login-panel form');
+    if (loginForm) {
+        e.preventDefault();
+        const emailInput = loginForm.querySelector('#login-email, input[type="text"], input[type="email"]');
+        const userVal = emailInput && emailInput.value.trim() ? emailInput.value.trim() : 'Ujang Merdeka';
+
+        localStorage.setItem('bakery_user', JSON.stringify({
+            isLoggedIn: true,
+            user: userVal,
+            email: userVal.includes('@') ? userVal : `${userVal.toLowerCase().replace(/\s+/g, '')}@gmail.com`,
+            loginTime: new Date().toISOString()
+        }));
+
+        const dialog = document.getElementById('registerModal');
+        if (dialog) dialog.close();
+        window.location.href = 'my_order.html';
+        return;
+    }
+
+    const regForm = e.target.closest('#registerForm, .register-panel form');
+    if (regForm) {
+        e.preventDefault();
+        const usernameInput = regForm.querySelector('#reg-username');
+        const emailInput = regForm.querySelector('#reg-email');
+        const userVal = usernameInput && usernameInput.value.trim() ? usernameInput.value.trim() : 'Ujang Merdeka';
+        const emailVal = emailInput && emailInput.value.trim() ? emailInput.value.trim() : 'ujang@gmail.com';
+
+        localStorage.setItem('bakery_user', JSON.stringify({
+            isLoggedIn: true,
+            user: userVal,
+            email: emailVal,
+            loginTime: new Date().toISOString()
+        }));
+
+        const dialog = document.getElementById('registerModal');
+        if (dialog) dialog.close();
+        window.location.href = 'my_order.html';
+        return;
     }
 });
 
@@ -367,6 +561,12 @@ document.addEventListener('DOMContentLoaded', () => {
     loadCardComponents().then(() => initMenuFilter());
     initTestimonialsSlider();
     initPromoCarousel();
+    updateCartBadge();
+    syncUserAuthUI();
+    window.addEventListener('storage', () => {
+        updateCartBadge();
+        syncUserAuthUI();
+    });
 
     if (document.getElementById('navbar') && !document.querySelector('[data-component*="navbar"]')) {
         loadComponent('#navbar', 'assets/components/navbar.html');

@@ -120,7 +120,15 @@
 
             let unitPrice = product.rawPrice || 5000;
             let currentQty = 1;
-            let isWishlisted = false;
+            
+            // Wishlist state synced with localStorage
+            let wishlistIds = [];
+            try {
+                wishlistIds = JSON.parse(localStorage.getItem('bakery_wishlist')) || [];
+            } catch (err) {
+                wishlistIds = [];
+            }
+            let isWishlisted = wishlistIds.includes(product.id);
 
             // DOM Elements
             const breadcrumbCurrent = document.getElementById('breadcrumbCurrent');
@@ -214,8 +222,20 @@
             if (btnAddToCart) {
                 btnAddToCart.addEventListener('click', (e) => {
                     e.preventDefault();
+                    if (typeof addToCart === 'function') {
+                        addToCart(product.id, currentQty);
+                    }
                     showToast(`${currentQty}x ${product.name} berhasil ditambahkan ke keranjang!`);
                 });
+            }
+
+            // Set initial wishlist state
+            if (btnWishlist && isWishlisted) {
+                btnWishlist.classList.add('active');
+                if (wishlistIcon) {
+                    wishlistIcon.classList.remove('fa-regular');
+                    wishlistIcon.classList.add('fa-solid');
+                }
             }
 
             // Event Listener: Wishlist
@@ -223,6 +243,19 @@
                 btnWishlist.addEventListener('click', (e) => {
                     e.preventDefault();
                     isWishlisted = !isWishlisted;
+
+                    try {
+                        let list = JSON.parse(localStorage.getItem('bakery_wishlist')) || [];
+                        if (isWishlisted) {
+                            if (!list.includes(product.id)) list.push(product.id);
+                        } else {
+                            list = list.filter(id => id !== product.id);
+                        }
+                        localStorage.setItem('bakery_wishlist', JSON.stringify(list));
+                    } catch (err) {
+                        console.error('Gagal memperbarui wishlist', err);
+                    }
+
                     if (isWishlisted) {
                         btnWishlist.classList.add('active');
                         if (wishlistIcon) {
