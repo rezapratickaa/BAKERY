@@ -43,9 +43,7 @@ function autoLoadComponents() {
     });
 }
 
-// ==========================================
 // Testimonials Slider (Auto-Slide + Touch Swipe)
-// ==========================================
 function initTestimonialsSlider() {
     const track = document.querySelector('.testimonials-track');
     const cards = document.querySelectorAll('.testimonial-card');
@@ -134,9 +132,9 @@ function initTestimonialsSlider() {
         const diff = touchStartX - touchEndX;
         if (Math.abs(diff) > 40) {
             if (diff > 0) {
-                goToSlide(currentIndex >= maxIndex() ? 0 : currentIndex + 1); // Swipe kiri -> slide berikutnya
+                goToSlide(currentIndex >= maxIndex() ? 0 : currentIndex + 1);
             } else {
-                goToSlide(currentIndex === 0 ? maxIndex() : currentIndex - 1); // Swipe kanan -> slide sebelumnya
+                goToSlide(currentIndex === 0 ? maxIndex() : currentIndex - 1); 
             }
         }
         clearInterval(autoSlide);
@@ -151,9 +149,7 @@ function initTestimonialsSlider() {
     });
 }
 
-// ==========================================
 // Filter Tab Daftar Menu (Makanan | Minuman)
-// ==========================================
 function initMenuFilter() {
     const tabBtns = document.querySelectorAll('.menu-tab-btn');
     const categories = document.querySelectorAll('.menu-category');
@@ -187,10 +183,7 @@ function initMenuFilter() {
     });
 }
 
-
-// ==========================================
 // Card Component Loader (Dinamis dari PRODUCTS_DATA atau data-card)
-// ==========================================
 let _cardTpl = null;
 function loadCardComponents() {
     const containers = document.querySelectorAll('[data-render-category]');
@@ -246,13 +239,143 @@ function loadCardComponents() {
         }
     });
 }
+// Register & Login Modal Dialog (Native <dialog> + Backdrop Blur + Sliding Image)
+document.addEventListener('click', (e) => {
+    const openBtn = e.target.closest('#openAuthModalBtn, [data-open-register], a[href="#register"], a[href="register.html"]');
+    if (openBtn) {
+        const dialog = document.getElementById('registerModal');
+        if (dialog) {
+            e.preventDefault();
+            const href = openBtn.getAttribute('href') || '';
+            if (href.includes('register') || openBtn.dataset.openRegister !== undefined) {
+                dialog.classList.add('show-register');
+            } else {
+                dialog.classList.remove('show-register');
+            }
+            dialog.showModal();
+        }
+        return;
+    }
+
+    const toReg = e.target.closest('#toRegisterBtn');
+    const toLog = e.target.closest('#toLoginBtn');
+    const dialog = document.getElementById('registerModal');
+    if (toReg && dialog) {
+        e.preventDefault();
+        dialog.classList.add('show-register');
+        return;
+    }
+    if (toLog && dialog) {
+        e.preventDefault();
+        dialog.classList.remove('show-register');
+        return;
+    }
+
+    const closeBtn = e.target.closest('#closeRegisterModal');
+    if (closeBtn) {
+        e.preventDefault();
+        if (dialog) dialog.close();
+    } else if (dialog && e.target === dialog) {
+        dialog.close();
+    }
+});
+
+window.toggleDialogPass = function(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const isPass = el.type === 'password';
+    el.type = isPass ? 'text' : 'password';
+    const icon = el.parentElement.querySelector('.btn-toggle-eye i');
+    if (icon) {
+        icon.className = isPass ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye';
+    }
+};
+
+// Promo Banner Carousel (Auto-Slide + Controls + Touch Swipe)
+function initPromoCarousel() {
+    const track = document.querySelector('.promo-carousel-track');
+    const slides = document.querySelectorAll('.promo-carousel-slide');
+    const prevBtn = document.querySelector('.promo-prev');
+    const nextBtn = document.querySelector('.promo-next');
+    const dotsContainer = document.querySelector('.promo-dots');
+    if (!track || slides.length === 0) return;
+
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+
+    function renderDots() {
+        if (!dotsContainer) return;
+        dotsContainer.innerHTML = '';
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('button');
+            dot.className = `promo-dot ${i === currentIndex ? 'active' : ''}`;
+            dot.setAttribute('aria-label', `Slide Promo ${i + 1}`);
+            dot.addEventListener('click', () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+        }
+    }
+
+    function updateDots() {
+        if (!dotsContainer) return;
+        const dots = dotsContainer.querySelectorAll('.promo-dot');
+        dots.forEach((dot, idx) => {
+            dot.classList.toggle('active', idx === currentIndex);
+        });
+    }
+
+    function goToSlide(index) {
+        currentIndex = (index + totalSlides) % totalSlides;
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        updateDots();
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
+    }
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+    }
+
+    renderDots();
+
+    let autoTimer = setInterval(() => goToSlide(currentIndex + 1), 3800);
+    const container = document.querySelector('.promo-carousel-container');
+    if (container) {
+        container.addEventListener('mouseenter', () => clearInterval(autoTimer));
+        container.addEventListener('mouseleave', () => {
+            clearInterval(autoTimer);
+            autoTimer = setInterval(() => goToSlide(currentIndex + 1), 3800);
+        });
+
+        let startX = 0;
+        container.addEventListener('touchstart', e => {
+            startX = e.touches[0].clientX;
+        }, { passive: true });
+        container.addEventListener('touchend', e => {
+            const diffX = e.changedTouches[0].clientX - startX;
+            if (Math.abs(diffX) > 40) {
+                if (diffX < 0) goToSlide(currentIndex + 1);
+                else goToSlide(currentIndex - 1);
+            }
+        }, { passive: true });
+    }
+}
+
 // Jalankan saat halaman selesai dimuat
 document.addEventListener('DOMContentLoaded', () => {
     autoLoadComponents();
     loadCardComponents().then(() => initMenuFilter());
     initTestimonialsSlider();
+    initPromoCarousel();
 
     if (document.getElementById('navbar') && !document.querySelector('[data-component*="navbar"]')) {
         loadComponent('#navbar', 'assets/components/navbar.html');
+    }
+
+    if (window.location.search.includes('register=true') || window.location.hash === '#register') {
+        setTimeout(() => {
+            const d = document.getElementById('registerModal');
+            if (d) d.showModal();
+        }, 300);
     }
 });

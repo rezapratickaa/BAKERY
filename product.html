@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TEFA Roti & Pastry — Menu</title>
+
+    <!-- Font & Icon -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <!-- css -->
+    <link rel="stylesheet" href="assets/css/navbar.css" />
+    <link rel="stylesheet" href="assets/css/card.css" />
+    <link rel="stylesheet" href="assets/css/footer.css" />
+    <link rel="stylesheet" href="assets/css/product.css" />
+</head>
+<body>
+    <!-- navbar -->
+    <div data-component="assets/components/navbar.html"></div>
+
+    <!-- hero -->
+    <section class="hero">
+        <span class="badge">Selamat Datang di TEFA Roti &amp; Pastry</span>
+        <h2>Lezatnya Kreasi Roti Berkualitas Tinggi</h2>
+        <p>
+            "Diproduksi langsung oleh para siswa dan talenta muda berpengalaman dengan
+            bahan-bahan pilihan berkualitas tinggi, menghasilkan cita rasa roti dan
+            pastry yang iwstimewa setiap harinya."
+        </p>
+        <div class="hero-buttons">
+            <a href="#makanan" class="btn btn-primary">Pesan Sekarang</a>
+            <a href="#makanan" class="btn btn-outline">Lihat Menu</a>
+        </div>
+    </section>
+
+    <!-- menu -->
+    <section class="menu-section">
+        <div class="section-header">
+            <h2>Menu Pilihan Kami</h2>
+            <p>Temukan berbagai varian rasa favorit Anda di sini</p>
+        </div>
+
+        <div class="menu-category" id="makanan">
+            <h3>Makanan</h3>
+            <div class="product-grid" data-render-category="makanan"></div>
+        </div>
+
+        <div class="menu-category" id="minuman">
+            <h3>Minuman</h3>
+            <div class="product-grid" data-render-category="minuman"></div>
+        </div>
+    </section>
+
+    <!-- banner promo carousel -->
+    <section class="promo-banner-section">
+        <div class="promo-carousel-container">
+            <div class="promo-carousel-track">
+                <div class="promo-carousel-slide">
+                    <img src="assets/image/foto_suasana_caffe.png" alt="Suasana TEFA Bakery & Pastry" class="promo-banner-img">
+                    <div class="promo-slide-overlay">
+                        <h3>Suasana Nyaman &amp; Hangat</h3>
+                        <p>Nikmati roti lezat dan kopi nikmat langsung di TEFA Bakery Cafe</p>
+                    </div>
+                </div>
+                <div class="promo-carousel-slide">
+                    <img src="assets/image/foto_produksi.png" alt="Proses Produksi Roti Berkualitas" class="promo-banner-img">
+                    <div class="promo-slide-overlay">
+                        <h3>Dipanggang Segar Setiap Hari</h3>
+                        <p>100% bahan baku pilihan dengan standar higienis terbaik</p>
+                    </div>
+                </div>
+                <div class="promo-carousel-slide">
+                    <img src="assets/image/tampak_depan_tefa.png" alt="Teaching Factory Polije" class="promo-banner-img">
+                    <div class="promo-slide-overlay">
+                        <h3>Teaching Factory TEFA Bakery</h3>
+                        <p>Karya dedikasi dan keterampilan siswa serta talenta muda unggulan</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dots -->
+            <div class="promo-dots"></div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div data-component="assets/components/footer.html"></div>
+    <script src="assets/js/products.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

@@ -1,13 +1,15 @@
 <nav class="navbar">
     <div class="left-nav">
-        <img src="assert/bakery.png" alt="Bakery Logo"
-             onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?name=User&background=EBD8BB&color=522C1A';">
+        <a href="home.html">
+            <img src="assert/bakery.png" alt="Bakery Logo"
+                 onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?name=Bakery&background=EBD8BB&color=522C1A';">
+        </a>
     </div>
 
     <div class="link">
         <ul class="center-nav">
             <li><a href="home.html">Home</a></li>
-            <li><a href="home.html#menu">Product</a></li>
+            <li><a href="product.html">Product</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="home.html#footer">Contact Us</a></li>
         </ul>
@@ -18,11 +20,107 @@
             <i class="fa-solid fa-magnifying-glass"></i>
             <input type="text" placeholder="Search...">
         </div>
-        <a href="#" class="cart-btn" title="Keranjang Belanja">
+        <a href="product.html" class="cart-btn" title="Keranjang Belanja">
             <i class="fa-solid fa-cart-shopping"></i>
         </a>
-        <img src="assert/user.png"
-             onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=User&background=EBD8BB&color=522C1A';"
-             alt="User Avatar" class="circle-avatar">
+        <button type="button" class="user-avatar-btn" id="openAuthModalBtn" title="Masuk / Daftar" aria-label="Buka formulir akun">
+            <img src="assert/user.png"
+                 onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=User&background=EBD8BB&color=522C1A';"
+                 alt="User Avatar" class="circle-avatar">
+        </button>
     </div>
+
+    <!-- POPUP MODAL AUTH (SLIDING IMAGE OVERLAY PANEL + BACKDROP BLUR) -->
+    <dialog id="registerModal" class="register-dialog">
+        <button type="button" class="dialog-close-btn" id="closeRegisterModal" aria-label="Tutup popup">&times;</button>
+        
+        <div class="auth-dialog-card">
+            <!-- PANEL KIRI: FORM LOGIN -->
+            <div class="auth-form-panel login-panel">
+                <div class="dialog-form-header">
+                    <h2>Selamat Datang</h2>
+                    <p>Masuk ke akun Anda untuk melanjutkan pesanan roti favorit.</p>
+                </div>
+
+                <form method="dialog" class="dialog-form" onsubmit="alert('Login berhasil! Selamat datang kembali.');">
+                    <div class="dialog-field">
+                        <label for="login-email">Email atau Username</label>
+                        <input type="text" id="login-email" placeholder="ujang@gmail.com" required>
+                    </div>
+
+                    <div class="dialog-field">
+                        <label for="login-password">Password</label>
+                        <div class="dialog-input-wrap">
+                            <input type="password" id="login-password" placeholder="•••••••••" required>
+                            <button type="button" class="btn-toggle-eye" onclick="toggleDialogPass('login-password')" aria-label="Lihat password">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="dialog-submit-btn">Masuk Sekarang</button>
+                </form>
+
+                <p class="dialog-footer">Belum punya akun? <a href="#" id="toRegisterBtn">Daftar</a></p>
+            </div>
+
+            <!-- PANEL KANAN: FORM REGISTER -->
+            <div class="auth-form-panel register-panel">
+                <div class="dialog-form-header">
+                    <h2>Register</h2>
+                    <p>Buat akun Anda untuk kemudahan memesan aneka roti &amp; minuman favorit.</p>
+                </div>
+
+                <form method="dialog" class="dialog-form" onsubmit="alert('Pendaftaran berhasil! Selamat datang di TEFA Bakery.');">
+                    <div class="dialog-field">
+                        <label for="reg-username">Username</label>
+                        <input type="text" id="reg-username" placeholder="Ujang Merdeka" required>
+                    </div>
+
+                    <div class="dialog-field">
+                        <label for="reg-email">Email</label>
+                        <input type="email" id="reg-email" placeholder="ujang@gmail.com" required>
+                    </div>
+
+                    <div class="dialog-field">
+                        <label for="reg-password">Password</label>
+                        <div class="dialog-input-wrap">
+                            <input type="password" id="reg-password" placeholder="•••••••••" required>
+                            <button type="button" class="btn-toggle-eye" onclick="toggleDialogPass('reg-password')" aria-label="Lihat password">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="dialog-field">
+                        <label for="reg-repeat">Repeat Password</label>
+                        <div class="dialog-input-wrap">
+                            <input type="password" id="reg-repeat" placeholder="•••••••••" required>
+                            <button type="button" class="btn-toggle-eye" onclick="toggleDialogPass('reg-repeat')" aria-label="Lihat password">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="dialog-submit-btn">Daftar Sekarang</button>
+                </form>
+
+                <p class="dialog-footer">Sudah memiliki akun? <a href="#" id="toLoginBtn">Login</a></p>
+            </div>
+
+            <!-- SLIDING IMAGE OVERLAY (Gambar yang bergeser ke kiri dan kanan) -->
+            <div class="image-sliding-overlay">
+                <img src="assets/image/tampak_depan_tefa.png" alt="Teaching Factory Bakery">
+                <div class="dialog-image-caption caption-login">
+                    <h3>TEFA Bakery &amp; Pastry</h3>
+                    <p>Aroma hangat roti &amp; pastry segar langsung dari oven setiap hari.</p>
+                </div>
+                <div class="dialog-image-caption caption-register">
+                    <h3>Selamat Datang!</h3>
+                    <p>Bergabunglah bersama kami dan nikmati aneka sajian lezat berkualitas.</p>
+                </div>
+            </div>
+
+        </div>
+    </dialog>
 </nav>
