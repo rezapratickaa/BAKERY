@@ -11,24 +11,22 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-    <!-- css -->
+    <!-- CSS -->
     <link rel="stylesheet" href="assets/css/components.css" />
     <link rel="stylesheet" href="assets/css/product.css" />
-    <link rel="stylesheet" href="components/card.html" />
 </head>
 <body>
+    <!-- Navbar -->
+    <div data-component="assets/components/navbar.html"></div>
 
-    <!-- navbar -->
-    <div data-component="components/navbar.html"></div>
-
-    <!-- hero -->
+    <!-- Hero -->
     <section class="hero">
         <span class="badge">Selamat Datang di TEFA Roti &amp; Pastry</span>
         <h2>Lezatnya Kreasi Roti Berkualitas Tinggi</h2>
         <p>
             "Diproduksi langsung oleh para siswa dan talenta muda berpengalaman dengan
             bahan-bahan pilihan berkualitas tinggi, menghasilkan cita rasa roti dan
-            pastry yang istimewa setiap harinya."
+            pastry yang istimewa setiap harinya"
         </p>
         <div class="hero-buttons">
             <a href="#makanan" class="btn btn-primary">Pesan Sekarang</a>
@@ -36,233 +34,56 @@
         </div>
     </section>
 
-    <!-- menu -->
+    <!-- Menu Section -->
     <section class="menu-section">
-        <div class="section-header">
-            <h2>Menu Pilihan Kami</h2>
-            <p>Temukan berbagai varian rasa favorit Anda di sini</p>
-        </div>
-
-        <!-- KATEGORI: MAKANAN -->
         <div class="menu-category" id="makanan">
             <h3>Makanan</h3>
-            <div class="product-grid">
-                
-                <div class="product-card">
-                    <div class="img-wrap">
-                        <img src="assets/image/foto_produk.jpg" alt="All New Rush">
-                    </div>
-                    <h4 class="card-title">All New Rush</h4>
-                    <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
-                    <div class="card-footer">
-                        <span class="card-price">$72.00/ day</span>
-                        <a href="#" class="card-btn">Rent Now</a>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="img-wrap">
-                        <img src="assets/image/foto_produk1.png" alt="All New Rush">
-                    </div>
-                    <h4 class="card-title">All New Rush</h4>
-                    <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
-                    <div class="card-footer">
-                        <span class="card-price">$72.00/ day</span>
-                        <a href="#" class="card-btn">Rent Now</a>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="img-wrap">
-                        <img src="assets/image/foto_produk2.png" alt="All New Rush">
-                    </div>
-                    <h4 class="card-title">All New Rush</h4>
-                    <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
-                    <div class="card-footer">
-                        <span class="card-price">$72.00/ day</span>
-                        <a href="#" class="card-btn">Rent Now</a>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="img-wrap">
-                        <img src="assets/image/foto_produk3.png" alt="All New Rush">
-                    </div>
-                    <h4 class="card-title">All New Rush</h4>
-                    <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
-                    <div class="card-footer">
-                        <span class="card-price">$72.00/ day</span>
-                        <a href="#" class="card-btn">Rent Now</a>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="img-wrap">
-                        <img src="assets/image/foto_produk4.png" alt="All New Rush">
-                    </div>
-                    <h4 class="card-title">All New Rush</h4>
-                    <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
-                    <div class="card-footer">
-                        <span class="card-price">$72.00/ day</span>
-                        <a href="#" class="card-btn">Rent Now</a>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="img-wrap">
-                        <img src="assets/image/foto_produk5.png" alt="All New Rush">
-                    </div>
-                    <h4 class="card-title">All New Rush</h4>
-                    <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
-                    <div class="card-footer">
-                        <span class="card-price">$72.00/ day</span>
-                        <a href="#" class="card-btn">Rent Now</a>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="img-wrap">
-                        <img src="assets/image/foto_produk6.jpg" alt="All New Rush">
-                    </div>
-                    <h4 class="card-title">All New Rush</h4>
-                    <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
-                    <div class="card-footer">
-                        <span class="card-price">$72.00/ day</span>
-                        <a href="#" class="card-btn">Rent Now</a>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="img-wrap">
-                        <img src="assets/image/foto_produk7.jpg" alt="All New Rush">
-                    </div>
-                    <h4 class="card-title">All New Rush</h4>
-                    <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
-                    <div class="card-footer">
-                        <span class="card-price">$72.00/ day</span>
-                        <a href="#" class="card-btn">Rent Now</a>
-                    </div>
-                </div>
-
-            </div>
+            <div class="product-grid" data-render-category="makanan"></div>
         </div>
 
-        <!-- KATEGORI: MINUMAN -->
         <div class="menu-category" id="minuman">
             <h3>Minuman</h3>
-            <div class="product-grid">
-                
-                <div class="product-card">
-                    <div class="img-wrap">
-                        <img src="assets/image/foto_minuman1.png" alt="All New Rush">
-                    </div>
-                    <h4 class="card-title">All New Rush</h4>
-                    <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
-                    <div class="card-footer">
-                        <span class="card-price">$72.00/ day</span>
-                        <a href="#" class="card-btn">Rent Now</a>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="img-wrap">
-                        <img src="assets/image/foto_minuman2.png" alt="All New Rush">
-                    </div>
-                    <h4 class="card-title">All New Rush</h4>
-                    <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
-                    <div class="card-footer">
-                        <span class="card-price">$72.00/ day</span>
-                        <a href="#" class="card-btn">Rent Now</a>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="img-wrap">
-                        <img src="assets/image/foto_minuman3.png" alt="All New Rush">
-                    </div>
-                    <h4 class="card-title">All New Rush</h4>
-                    <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
-                    <div class="card-footer">
-                        <span class="card-price">$72.00/ day</span>
-                        <a href="#" class="card-btn">Rent Now</a>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="img-wrap">
-                        <img src="assets/image/foto_minuman4.png" alt="All New Rush">
-                    </div>
-                    <h4 class="card-title">All New Rush</h4>
-                    <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
-                    <div class="card-footer">
-                        <span class="card-price">$72.00/ day</span>
-                        <a href="#" class="card-btn">Rent Now</a>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="img-wrap">
-                        <img src="assets/image/foto_minuman5.jpg" alt="All New Rush">
-                    </div>
-                    <h4 class="card-title">All New Rush</h4>
-                    <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
-                    <div class="card-footer">
-                        <span class="card-price">$72.00/ day</span>
-                        <a href="#" class="card-btn">Rent Now</a>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="img-wrap">
-                        <img src="assets/image/foto_minuman6.jpg" alt="All New Rush">
-                    </div>
-                    <h4 class="card-title">All New Rush</h4>
-                    <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
-                    <div class="card-footer">
-                        <span class="card-price">$72.00/ day</span>
-                        <a href="#" class="card-btn">Rent Now</a>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="img-wrap">
-                        <img src="assets/image/foto_minuman7.jpg" alt="All New Rush">
-                    </div>
-                    <h4 class="card-title">All New Rush</h4>
-                    <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
-                    <div class="card-footer">
-                        <span class="card-price">$72.00/ day</span>
-                        <a href="#" class="card-btn">Rent Now</a>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="img-wrap">
-                        <img src="assets/image/foto_minuman8.jpg" alt="All New Rush">
-                    </div>
-                    <h4 class="card-title">All New Rush</h4>
-                    <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
-                    <div class="card-footer">
-                        <span class="card-price">$72.00/ day</span>
-                        <a href="#" class="card-btn">Rent Now</a>
-                    </div>
-                </div>
-
-            </div>
+            <div class="product-grid" data-render-category="minuman"></div>
         </div>
     </section>
 
-    <!-- banner promo -->
-    <section class="promo-banner-image-section">
-        <img src="assets/image/banner_promo.png" alt="Special Hot Promo" class="promo-banner-img">
+    <!-- Banner Promo Carousel -->
+    <section class="promo-banner-section">
+        <div class="promo-carousel-container">
+            <div class="promo-carousel-track">
+                <div class="promo-carousel-slide">
+                    <img src="assets/image/foto_suasana_caffe.png" alt="Suasana TEFA Bakery & Pastry" class="promo-banner-img">
+                    <div class="promo-slide-overlay">
+                        <h3>Suasana Nyaman &amp; Hangat</h3>
+                        <p>Nikmati roti lezat dan kopi nikmat langsung di TEFA Bakery Cafe</p>
+                    </div>
+                </div>
+                <div class="promo-carousel-slide">
+                    <img src="assets/image/foto_produksi.png" alt="Proses Produksi Roti Berkualitas" class="promo-banner-img">
+                    <div class="promo-slide-overlay">
+                        <h3>Dipanggang Segar Setiap Hari</h3>
+                        <p>100% bahan baku pilihan dengan standar higienis terbaik</p>
+                    </div>
+                </div>
+                <div class="promo-carousel-slide">
+                    <img src="assets/image/tampak_depan_tefa.png" alt="Teaching Factory Polije" class="promo-banner-img">
+                    <div class="promo-slide-overlay">
+                        <h3>Teaching Factory TEFA Bakery</h3>
+                        <p>Karya dedikasi dan keterampilan siswa serta talenta muda unggulan</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Dots -->
+            <div class="promo-dots"></div>
+        </div>
     </section>
 
-    <!-- footer -->
-    <div data-component="components/footer.html"></div>
-    <script src="assets/js/script.js"></script>
+    <!-- Footer -->
+    <div data-component="assets/components/footer.html"></div>
 
-    <!-- COMPONENT LOADER -->
+    <!-- Scripts -->
     <script>
+        // COMPONENT LOADER
         document.addEventListener('DOMContentLoaded', function () {
             const components = document.querySelectorAll('[data-component]');
             components.forEach(function (el) {
@@ -282,5 +103,7 @@
             });
         });
     </script>
+    <script src="assets/js/products.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>

@@ -11,7 +11,7 @@
                 <span class="menu-sold">· {{sold}}</span>
             </div>
         </div>
-        <button class="menu-add-btn" type="button" title="Tambah ke keranjang" onclick="event.stopPropagation(); window.location.href='detail_product.html?id={{id}}'">
+        <button class="menu-add-btn" type="button" title="Tambah ke keranjang" aria-label="Tambah {{name}} ke keranjang" onclick="event.stopPropagation(); addToCart('{{id}}', 1); showToast('{{name}} berhasil ditambahkan ke keranjang!');">
             <i class="fa-solid fa-plus"></i>
         </button>
     </div>

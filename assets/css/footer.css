@@ -1,3 +1,9 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 .footer {
     background-color: #522C1A;
     color: #EBD8BB;

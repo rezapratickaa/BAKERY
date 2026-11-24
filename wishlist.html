@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TEFA Bakery - Wishlist Saya</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="assets/css/navbar.css" />
+  <link rel="stylesheet" href="assets/css/footer.css" />
+  <link rel="stylesheet" href="assets/css/wishlist.css">
+</head>
+<body>
+  <div data-component="assets/components/navbar.html"></div>
+
+  <main class="container">
+    <div class="breadcrumb">
+      <a href="home.html">Home</a><span>›</span>
+      <a href="my_order.html">My Account</a><span>›</span>
+      <span class="current">Wishlist</span>
+    </div>
+
+    <section class="account-layout">
+      <aside class="sidebar">
+        <p class="welcome">Welcome to your Account</p>
+        <ul>
+          <li><a href="my_order.html"><span>♧</span> My orders</a></li>
+          <li class="selected"><a href="wishlist.html"><span>♡</span> Wishlist</a></li>
+          <li><a href="contact_detail.html"><span>♙</span> My info</a></li>
+          <li><a href="#" id="wishlistSignOut"><span>⇥</span> Sign out</a></li>
+        </ul>
+      </aside>
+
+      <section class="wishlist-section">
+        <header class="wishlist-header">
+          <div class="header-titles">
+            <h1>Wishlist Saya</h1>
+            <p class="wishlist-subtitle">Daftar roti hangat dan minuman pilihan yang siap Anda pesan kapan saja.</p>
+          </div>
+          <div class="header-actions">
+            <span class="wishlist-count" id="wishlistCountBadge" aria-live="polite">0 Produk</span>
+            <button type="button" class="btn-clear-wishlist" id="clearWishlistBtn" hidden>Kosongkan</button>
+          </div>
+        </header>
+
+        <div id="wishlistGrid" class="wishlist-grid" aria-live="polite"></div>
+
+        <div id="emptyWishlistState" class="empty-wishlist" hidden>
+          <div class="empty-icon">
+            <i class="fa-regular fa-heart" aria-hidden="true"></i>
+          </div>
+          <h2>Wishlist Anda Masih Kosong</h2>
+          <p>Simpan roti atau minuman favorit Anda ke dalam daftar ini untuk memudahkan pemesanan berikutnya.</p>
+          <a href="product.html" class="btn-explore-menu">Jelajahi Menu Roti</a>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <div data-component="assets/components/footer.html"></div>
+
+  <script src="assets/js/products.js"></script>
+  <script src="assets/js/wishlist.js"></script>
+  <script src="assets/js/script.js"></script>
+</body>
+</html>

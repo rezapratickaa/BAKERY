@@ -1,0 +1,241 @@
+/* BASE RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'DM Sans', sans-serif;
+    background-color: #FAF4EC;
+}
+
+/* HERO */
+.contact-hero {
+    padding: 80px 30px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.contact-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 44px;
+    color: #522C1A;
+    margin-bottom: 14px;
+}
+
+.contact-hero p {
+    font-size: 15px;
+    color: #7A6559;
+    line-height: 1.7;
+}
+
+/* MAIN SECTION */
+.contact-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 30px 60px;
+}
+
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+/* FORM BOX */
+.contact-form-box {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 36px 38px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.contact-form-box h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    color: #522C1A;
+    margin-bottom: 4px;
+}
+
+.form-note {
+    font-size: 13px;
+    color: #8C6A54;
+    margin-bottom: 24px;
+}
+
+.form-note span {
+    color: #c0392b;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #522C1A;
+    margin-bottom: 6px;
+}
+
+.form-group label span {
+    color: #c0392b;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid #e0dcd7;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: #333;
+    background: #faf8f5;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #522C1A;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(82, 44, 26, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 110px;
+}
+
+.form-privacy {
+    font-size: 12.5px;
+    color: #8C6A54;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.contact-submit-btn {
+    display: inline-block;
+    padding: 12px 32px;
+    background: #522C1A;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.contact-submit-btn:hover {
+    background: #3D1F11;
+    transform: translateY(-1px);
+}
+
+/* INFO BOX */
+.contact-info-box {
+    background: #f5f0ea;
+    border-radius: 16px;
+    padding: 36px 32px;
+    border: 1px solid rgba(82, 44, 26, 0.08);
+}
+
+.contact-info-box h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: #522C1A;
+    margin-bottom: 28px;
+}
+
+.info-item {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 24px;
+}
+
+.info-item:last-child {
+    margin-bottom: 0;
+}
+
+.info-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #522C1A;
+    font-size: 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.info-item h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #522C1A;
+    margin-bottom: 2px;
+}
+
+.info-item p {
+    font-size: 14px;
+    color: #2B1810;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.info-item span {
+    font-size: 12.5px;
+    color: #8C6A54;
+    line-height: 1.4;
+}
+
+/* MAP */
+.contact-map-section {
+    max-width: 1100px;
+    margin: 0 auto 60px;
+    padding: 0 30px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .contact-hero {
+        padding: 60px 20px 30px;
+    }
+    .contact-hero h1 {
+        font-size: 32px;
+    }
+    .contact-section {
+        padding: 0 20px 40px;
+    }
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    .contact-form-box,
+    .contact-info-box {
+        padding: 28px 22px;
+    }
+    .contact-map-section {
+        padding: 0 20px;
+        margin-bottom: 40px;
+    }
+}

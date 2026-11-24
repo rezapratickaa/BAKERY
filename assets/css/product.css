@@ -1,17 +1,33 @@
 /* =========================================================
-   PRODUK PAGE STYLES
+   BASE RESET & FONTS
    ========================================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-/* ====== HERO SECTION ====== */
+body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: #FAF4EC;
+    color: #4a2c20;
+}
+
+/* =========================================================
+   HERO SECTION
+   ========================================================= */
 .hero {
     background: linear-gradient(135deg, #fff9f0);
-    color: #4a2c20;
-    padding: 80px 30px;
+    padding: 150px 30px 80px;
     text-align: center;
 }
 .hero .badge {
     font-family: 'Poppins', sans-serif;
     font-size: 20px;
+    color: #a67c52;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 10px;
 }
 .hero h2 {
     font-family: 'Playfair Display', serif;
@@ -34,7 +50,9 @@
     flex-wrap: wrap;
 }
 
-/* ====== BUTTONS ====== */
+/* =========================================================
+   BUTTONS
+   ========================================================= */
 .btn {
     font-family: 'Poppins', sans-serif;
     font-size: 15px;
@@ -64,7 +82,9 @@
     transform: translateY(-2px);
 }
 
-/* ====== MENU SECTION ====== */
+/* =========================================================
+   MENU SECTION & GRID
+   ========================================================= */
 .menu-section {
     padding: 70px 30px;
     background: #FFF9F2;
@@ -80,7 +100,6 @@
     margin-bottom: 10px;
 }
 .section-header p {
-    font-family: 'DM Sans', sans-serif;
     color: #7a5c4a;
     font-size: 16px;
 }
@@ -99,16 +118,17 @@
     text-align: center;
 }
 
-/* ====== GRID PRODUK ====== */
 .product-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 24px;
 }
 
-/* ====== PRODUCT CARD (Versi Rapi untuk Gambar Kotak) ====== */
+/* =========================================================
+   PRODUCT CARD
+   ========================================================= */
 .product-card {
-    background-color: #FAF4EC; /* Warna latar belakang kartu diubah jadi terang */
+    background-color: #FAF4EC;
     border-radius: 16px;
     position: relative;
     display: flex;
@@ -117,36 +137,31 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
     border: 1px solid rgba(0,0,0,0.05);
-    overflow: hidden; /* Memastikan gambar tidak keluar dari kotak */
+    overflow: hidden;
 }
-
 .product-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
-/* Area Gambar */
 .product-card .img-wrap {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%; /* Gambar menutupi seluruh kartu */
+    height: 100%;
     z-index: 1;
 }
-
 .product-card .img-wrap img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Memaksa gambar memenuhi kotak tanpa gepeng */
+    object-fit: cover;
     transition: transform 0.3s ease;
 }
-
 .product-card:hover .img-wrap img {
-    transform: scale(1.08); /* Efek zoom saat dihover */
+    transform: scale(1.08);
 }
 
-/* Gradasi Gelap di Bawah Gambar (Agar teks harga & tombol terbaca) */
 .product-card::after {
     content: '';
     position: absolute;
@@ -159,7 +174,6 @@
     pointer-events: none;
 }
 
-/* Judul di Atas (Kiri) */
 .product-card .card-title {
     position: absolute;
     top: 16px;
@@ -167,16 +181,15 @@
     font-family: 'DM Sans', sans-serif;
     font-weight: 600;
     font-size: 16px;
-    color: #522C1A; /* Warna teks gelap karena background atas masih terang */
+    color: #522C1A;
     z-index: 3;
     margin: 0;
-    background: rgba(255, 255, 255, 0.8); /* Background putih transparan untuk judul */
+    background: rgba(255, 255, 255, 0.8);
     padding: 4px 10px;
     border-radius: 8px;
     backdrop-filter: blur(4px);
 }
 
-/* Ikon Hati di Atas (Kanan) */
 .product-card .wishlist-btn {
     position: absolute;
     top: 16px;
@@ -195,12 +208,10 @@
     z-index: 3;
     transition: transform 0.2s;
 }
-
 .product-card .wishlist-btn:hover {
     transform: scale(1.15);
 }
 
-/* Footer / Harga & Tombol di Bawah */
 .product-card .card-footer {
     position: absolute;
     bottom: 16px;
@@ -211,16 +222,12 @@
     align-items: center;
     z-index: 3;
 }
-
-/* Harga (Putih karena berada di atas gradasi gelap) */
 .product-card .card-price {
     font-family: 'DM Sans', sans-serif;
     font-weight: 700;
     font-size: 15px;
     color: #ffffff;
 }
-
-/* Tombol Rent Now */
 .product-card .card-btn {
     background-color: #ffffff;
     color: #2B1810;
@@ -233,57 +240,117 @@
     transition: background 0.2s ease, transform 0.2s ease;
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
-
 .product-card .card-btn:hover {
     background-color: #f0f0f0;
     transform: translateY(-2px);
 }
 
+/* =========================================================
+   BANNER PROMO CAROUSEL
+   ========================================================= */
+.promo-banner-section {
+    max-width: 1200px;
+    margin: 0 auto 50px;
+    padding: 0 30px;
+}
+.promo-carousel-container {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    background-color: #522C1A;
+}
+.promo-carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+}
+.promo-carousel-slide {
+    position: relative;
+    min-width: 100%;
+    width: 100%;
+    height: 444px;
+    overflow: hidden;
+}
+.promo-carousel-slide .promo-banner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+.promo-slide-overlay {
+    position: absolute; 
+    inset: 0;
+    background: linear-gradient(to top, rgba(30, 15, 8, 0.92) 0%, rgba(30, 15, 8, 0.5) 55%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 24px 44px;
+    color: #ffffff;
+    pointer-events: none;
+}
+.promo-slide-overlay h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    margin-bottom: 6px;
+    color: #ffffff;
+}
+.promo-slide-overlay p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13.5px;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    max-width: 500px;
+}
+
+.promo-dots {
+    position: absolute;
+    bottom: 22px;
+    right: 32px;
+    display: flex;
+    gap: 8px;
+    z-index: 5;
+}
+.promo-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: width 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease;
+}
+.promo-dot.active {
+    width: 24px;
+    border-radius: 6px;
+    background: #EBD8BB;
+}
 
 /* =========================================================
-   BANNER PROMO (VERSI GAMBAR UTUH)
+   RESPONSIVE
    ========================================================= */
-.promo-banner-image-section {
-    max-width: 1200px; /* Menyamakan lebar dengan grid produk */
-    margin: -40px auto 40px auto; /* Naik sedikit menimpa hero */
-    padding: 0 30px;
-    position: relative;
-    z-index: 10;
-}
-
-.promo-banner-img {
-    width: 100%; /* Memaksa gambar memenuhi lebar container */
-    height: auto; /* Menjaga proporsi gambar agar tidak gepeng */
-    border-radius: 16px; /* Sudut melengkung seperti di gambar */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* Efek bayangan halus */
-    display: block;
-    object-fit: cover;
-}
-
-/* Responsive untuk HP */
-@media (max-width: 760px) {
-    .promo-banner-image-section {
-        padding: 0 20px;
-        margin: -20px auto 30px auto; /* Kurangi margin di HP */
-    }
-    .promo-banner-img {
-        border-radius: 12px; /* Sudut sedikit lebih kecil di HP */
-    }
-}
-
-
-/* ====== RESPONSIVE ====== */
 @media (max-width: 1024px) {
     .product-grid { grid-template-columns: repeat(3, 1fr); }
     .hero h2 { font-size: 34px; }
 }
+
 @media (max-width: 760px) {
     .product-grid { grid-template-columns: repeat(2, 1fr); }
-    .hero { padding: 60px 20px; }
+    .hero { padding: 120px 20px 60px; }
     .hero h2 { font-size: 28px; }
     .hero p { font-size: 14px; }
     .menu-section { padding: 50px 20px; }
+    
+    .promo-banner-section { padding: 0 20px; margin: 0 auto 35px; }
+    .promo-carousel-slide { height: 180px; }
+    .promo-slide-overlay { padding: 16px 18px; }
+    .promo-slide-overlay h3 { font-size: 17px; }
+    .promo-slide-overlay p { font-size: 11.5px; max-width: 240px; }
+    .promo-dots { bottom: 14px; right: 16px; }
 }
+
 @media (max-width: 480px) {
     .product-grid { grid-template-columns: 1fr; }
 }

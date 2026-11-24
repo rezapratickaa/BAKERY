@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TEFA Bakery - Informasi Akun</title>
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="assets/css/navbar.css" />
+  <link rel="stylesheet" href="assets/css/footer.css" />
+  <link rel="stylesheet" href="assets/css/contact_detail.css">
+</head>
+
+<body>
+
+<div data-component="assets/components/navbar.html"></div>
+
+<main class="container">
+<div class="breadcrumb">
+<a href="home.html">Home</a>
+<span>›</span>
+<a href="contact_detail.html">My Account</a>
+<span>›</span>
+<span class="active">Personal Info</span>
+</div>
+
+<div class="account-content">
+<aside class="sidebar">
+    <h2>Hello Jhanvi</h2>
+    <p class="welcome">Welcome to your Account</p>
+
+    <ul>
+        <li><a href="my_order.html">♙ &nbsp; My orders</a></li>
+        <li><a href="wishlist.html">♡ &nbsp; Wishlist</a></li>
+        <li class="selected"><a href="contact_detail.html">♙ &nbsp; My info</a></li>
+        <li><a href="#" id="signOut">⇥ &nbsp; Sign out</a></li>
+    </ul>
+</aside>
+
+<section class="personal-info">
+    <h1>My Info</h1>
+    <h3>Contact Details</h3>
+
+    <div class="info-item">
+        <div>
+            <p class="label">Your Name</p>
+            <p id="accountName">Jhanvi Shah</p>
+        </div>
+        <button type="button" data-field="name">Change</button>
+    </div>
+
+    <div class="info-item">
+        <div>
+            <p class="label">Email Address</p>
+            <p id="accountEmail">Jhanvi@gmail.com</p>
+        </div>
+        <button type="button" data-field="email">Change</button>
+    </div>
+
+    <div class="info-item">
+        <div>
+            <p class="label">Password</p>
+            <p id="accountPassword">••••••••</p>
+        </div>
+        <button type="button" data-field="password">Change</button>
+    </div>
+</section>
+</div>
+</main>
+
+<div data-component="assets/components/footer.html"></div>
+
+  <script src="assets/js/contact_detail.js"></script>
+  <script src="assets/js/script.js"></script>
+</body>
+</html>

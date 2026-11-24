@@ -1,0 +1,320 @@
+/* ==========================================================================
+   TEFA BAKERY - ORDER STATUS / DETAIL PAGE STYLING
+   ========================================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', 'DM Sans', Arial, sans-serif;
+  color: #2B1810;
+  background-color: #FAF4EC;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  width: 90%;
+  max-width: 1240px;
+  margin: 0 auto;
+  flex: 1;
+  padding-bottom: 70px;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 30px 0 35px;
+  color: #7A6559;
+  font-size: 14px;
+}
+
+.breadcrumb a {
+  color: #7A6559;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.breadcrumb a:hover {
+  color: #522C1A;
+  text-decoration: underline;
+}
+
+.breadcrumb .current {
+  color: #522C1A;
+  font-weight: 600;
+}
+
+/* Account Layout */
+.account-layout {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 40px;
+  align-items: start;
+}
+
+/* Sidebar Navigation */
+.sidebar {
+  background: #ffffff;
+  border: 1px solid #EBD8BB;
+  border-radius: 16px;
+  padding: 24px 18px;
+  box-shadow: 0 4px 16px rgba(82, 44, 26, 0.04);
+}
+
+.sidebar .welcome {
+  color: #7A6559;
+  font-size: 13px;
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #FAF4EC;
+  font-weight: 500;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  margin-bottom: 6px;
+}
+
+.sidebar li a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  color: #7A6559;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.sidebar li a span {
+  font-size: 16px;
+  width: 20px;
+  text-align: center;
+}
+
+.sidebar li:hover a {
+  background: #FAF4EC;
+  color: #522C1A;
+}
+
+.sidebar li.selected a,
+.sidebar li.active a {
+  background: #FAF4EC;
+  color: #522C1A;
+  font-weight: 600;
+  border-left: 4px solid #522C1A;
+}
+
+/* Orders Section */
+.orders-section h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #522C1A;
+  margin-bottom: 22px;
+}
+
+/* Order Summary Box */
+.order-summary {
+  background: #FAF4EC;
+  border: 1px solid #EBD8BB;
+  border-radius: 14px;
+  padding: 22px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 35px;
+}
+
+.order-summary h2 {
+  font-size: 17px;
+  font-weight: 700;
+  color: #522C1A;
+  margin-bottom: 6px;
+}
+
+.order-summary p {
+  font-size: 13px;
+  color: #7A6559;
+}
+
+.order-total {
+  font-size: 15px;
+  color: #7A6559;
+}
+
+.order-total strong {
+  color: #522C1A;
+  font-size: 20px;
+  font-weight: 700;
+  margin-left: 6px;
+}
+
+/* Timeline Tracking (Warm Bakery Style) */
+.timeline {
+  max-width: 650px;
+  margin: 30px auto 45px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 9px;
+  left: 7%;
+  right: 7%;
+  height: 4px;
+  background: #EBD8BB;
+  border-radius: 2px;
+}
+
+.step {
+  position: relative;
+  z-index: 1;
+  width: 25%;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #7A6559;
+}
+
+.dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #FAF4EC;
+  border: 3px solid #EBD8BB;
+  margin: 0 auto 12px;
+  transition: all 0.3s ease;
+}
+
+.step.done .dot {
+  background: #522C1A;
+  border-color: #522C1A;
+}
+
+.step.done {
+  color: #522C1A;
+}
+
+.step.current .dot {
+  background: #522C1A;
+  border-color: #FAF4EC;
+  box-shadow: 0 0 0 4px #522C1A;
+}
+
+.step.current {
+  color: #522C1A;
+  font-weight: 700;
+}
+
+.step.pending {
+  color: #A39084;
+}
+
+/* Status Message Box */
+.status-message {
+  width: 100%;
+  margin: 0 auto 35px;
+  background: #ffffff;
+  border: 1px solid #EBD8BB;
+  border-left: 4px solid #522C1A;
+  border-radius: 10px;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 13.5px;
+  color: #522C1A;
+}
+
+.status-message time {
+  color: #7A6559;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Product Box */
+.product-box {
+  background: #ffffff;
+  border: 1px solid #EBD8BB;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 18px rgba(82, 44, 26, 0.05);
+}
+
+.product-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 16px 0;
+  border-bottom: 1px dashed #EBD8BB;
+}
+
+.product-row:last-child {
+  border-bottom: none;
+}
+
+.product-thumb {
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #FAF4EC;
+  border: 1px solid #EBD8BB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-info h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #522C1A;
+  margin-bottom: 4px;
+}
+
+.product-qty {
+  font-size: 14px;
+  color: #7A6559;
+  padding: 0 15px;
+}
+
+.product-price {
+  font-size: 15px;
+  font-weight: 700;
+  color: #522C1A;
+  margin-left: auto;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .account-layout {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+}

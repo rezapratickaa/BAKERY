@@ -1,6 +1,4 @@
-/* ==========================================
-   BASE RESET & TYPOGRAPHY (ABOUT PAGE)
-   ========================================== */
+/* BASE RESET & TYPOGRAPHY */
 * {
     margin: 0;
     padding: 0;
@@ -12,9 +10,7 @@ h1, h2, h3, h4, .about-hero-title, .about-profile-title, .about-team-title {
     font-family: 'Playfair Display', Georgia, serif;
 }
 
-/* ==========================================
-   ABOUT PAGE - HERO SECTION (Centered with Photo Background & Fade)
-   ========================================== */
+/* HERO SECTION */
 .about-hero {
     position: relative;
     min-height: 675px;
@@ -124,9 +120,7 @@ h1, h2, h3, h4, .about-hero-title, .about-profile-title, .about-team-title {
     }
 }
 
-/* ==========================================
-   ABOUT PAGE - PROFIL PERUSAHAAN / SEJARAH
-   ========================================== */
+/* PROFIL PERUSAHAAN / SEJARAH */
 .about-profile {
     background-color: #FAF4EC   ;
     padding: 80px 24px 100px;
@@ -197,9 +191,7 @@ h1, h2, h3, h4, .about-hero-title, .about-profile-title, .about-team-title {
     }
 }
 
-/* ==========================================
-   ABOUT PAGE - STRUKTUR PENGELOLA / TEAM
-   ========================================== */
+/* STRUKTUR PENGELOLA / TEAM */
 .about-team {
     background-color: #FAF4EC;
     padding: 90px 24px 120px;
@@ -290,9 +282,7 @@ h1, h2, h3, h4, .about-hero-title, .about-profile-title, .about-team-title {
     transform: scale(1.03);
 }
 
-/* ==========================================
-   ABOUT PAGE - PETA LOKASI SECTION
-   ========================================== */
+/* PETA LOKASI SECTION */
 .about-location {
     background-color: #FAF4EC;
     padding: 90px 24px 100px;

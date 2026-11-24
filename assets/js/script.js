@@ -1,3 +1,99 @@
+// ============================================
+// CART MANAGEMENT (LOCALSTORAGE + BADGE)
+// ============================================
+const CART_STORAGE_KEY = 'bakery_cart';
+
+function getCart() {
+    try {
+        const data = localStorage.getItem(CART_STORAGE_KEY);
+        return data ? JSON.parse(data) : [];
+    } catch (e) {
+        return [];
+    }
+}
+
+function saveCart(cart) {
+    try {
+        localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+    } catch (e) {
+        console.error('Gagal menyimpan cart', e);
+    }
+    updateCartBadge();
+    window.dispatchEvent(new CustomEvent('cartUpdated', { detail: { cart } }));
+}
+
+function updateCartBadge() {
+    const badges = document.querySelectorAll('.cart-badge, #navbarCartBadge');
+    if (!badges.length) return;
+
+    const cart = getCart();
+    const totalCount = cart.reduce((sum, item) => sum + (parseInt(item.qty, 10) || 1), 0);
+
+    badges.forEach(badge => {
+        if (totalCount > 0) {
+            badge.textContent = totalCount > 99 ? '99+' : totalCount;
+            badge.hidden = false;
+            badge.style.display = 'flex';
+        } else {
+            badge.hidden = true;
+            badge.style.display = 'none';
+        }
+    });
+}
+
+function addToCart(productId, qty = 1) {
+    const count = parseInt(qty, 10) || 1;
+    let product = null;
+    if (typeof PRODUCTS_DATA !== 'undefined') {
+        product = PRODUCTS_DATA.find(p => p.id === productId);
+    }
+
+    if (!product) {
+        console.warn('Produk tidak ditemukan:', productId);
+        return;
+    }
+
+    const cart = getCart();
+    const existingIndex = cart.findIndex(item => item.id === productId);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].qty = (parseInt(cart[existingIndex].qty, 10) || 1) + count;
+    } else {
+        cart.push({
+            id: product.id,
+            name: product.name,
+            category: product.category,
+            price: product.price,
+            rawPrice: product.rawPrice,
+            image: product.image,
+            qty: count,
+            checked: true
+        });
+    }
+
+    saveCart(cart);
+}
+
+function showToast(message) {
+    let toast = document.getElementById('globalCartToast');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'globalCartToast';
+        toast.className = 'cart-toast';
+        toast.innerHTML = `<i class="fa-solid fa-circle-check" aria-hidden="true"></i><span class="toast-text"></span>`;
+        document.body.appendChild(toast);
+    }
+
+    const textEl = toast.querySelector('.toast-text');
+    if (textEl) textEl.textContent = message;
+
+    toast.classList.add('show');
+    clearTimeout(toast._timeout);
+    toast._timeout = setTimeout(() => {
+        toast.classList.remove('show');
+    }, 2800);
+}
+
 function loadComponent(targetSelector, filePath) {
     fetch(filePath)
         .then(response => {
@@ -27,6 +123,8 @@ function loadComponent(targetSelector, filePath) {
                             link.classList.remove('active');
                         }
                     });
+                    updateCartBadge();
+                    syncUserAuthUI();
                 }
             } else {
                 target.innerHTML = html;
@@ -43,9 +141,7 @@ function autoLoadComponents() {
     });
 }
 
-// ==========================================
 // Testimonials Slider (Auto-Slide + Touch Swipe)
-// ==========================================
 function initTestimonialsSlider() {
     const track = document.querySelector('.testimonials-track');
     const cards = document.querySelectorAll('.testimonial-card');
@@ -134,9 +230,9 @@ function initTestimonialsSlider() {
         const diff = touchStartX - touchEndX;
         if (Math.abs(diff) > 40) {
             if (diff > 0) {
-                goToSlide(currentIndex >= maxIndex() ? 0 : currentIndex + 1); // Swipe kiri -> slide berikutnya
+                goToSlide(currentIndex >= maxIndex() ? 0 : currentIndex + 1);
             } else {
-                goToSlide(currentIndex === 0 ? maxIndex() : currentIndex - 1); // Swipe kanan -> slide sebelumnya
+                goToSlide(currentIndex === 0 ? maxIndex() : currentIndex - 1); 
             }
         }
         clearInterval(autoSlide);
@@ -151,9 +247,7 @@ function initTestimonialsSlider() {
     });
 }
 
-// ==========================================
 // Filter Tab Daftar Menu (Makanan | Minuman)
-// ==========================================
 function initMenuFilter() {
     const tabBtns = document.querySelectorAll('.menu-tab-btn');
     const categories = document.querySelectorAll('.menu-category');
@@ -187,10 +281,7 @@ function initMenuFilter() {
     });
 }
 
-
-// ==========================================
 // Card Component Loader (Dinamis dari PRODUCTS_DATA atau data-card)
-// ==========================================
 let _cardTpl = null;
 function loadCardComponents() {
     const containers = document.querySelectorAll('[data-render-category]');
@@ -246,13 +337,245 @@ function loadCardComponents() {
         }
     });
 }
+// Sync User Auth state in Navbar (shows username if logged in)
+function syncUserAuthUI() {
+    try {
+        const raw = localStorage.getItem('bakery_user');
+        if (!raw) return;
+        const u = JSON.parse(raw);
+        if (u && u.isLoggedIn) {
+            const btns = document.querySelectorAll('#openAuthModalBtn');
+            btns.forEach(btn => {
+                const span = btn.querySelector('span');
+                const displayName = (u.user || 'Akun Saya').split('@')[0];
+                if (span) {
+                    span.textContent = displayName.length > 9 ? displayName.slice(0, 9) + '..' : displayName;
+                }
+                btn.title = `Pesanan & Profil: ${u.user || 'User'}`;
+                btn.setAttribute('aria-label', `Buka pesanan ${u.user || 'User'}`);
+            });
+        }
+    } catch (e) {}
+}
+
+// Register & Login Modal Dialog (Native <dialog> + Backdrop Blur + Sliding Image)
+document.addEventListener('click', (e) => {
+    const openBtn = e.target.closest('#openAuthModalBtn, [data-open-register], a[href="#register"], a[href="register.html"]');
+    if (openBtn) {
+        e.preventDefault();
+        // Jika user sudah login, langsung bawa ke my_order.html
+        try {
+            const raw = localStorage.getItem('bakery_user');
+            if (raw) {
+                const u = JSON.parse(raw);
+                if (u && u.isLoggedIn) {
+                    window.location.href = 'my_order.html';
+                    return;
+                }
+            }
+        } catch (err) {}
+
+        const dialog = document.getElementById('registerModal');
+        if (dialog) {
+            const href = openBtn.getAttribute('href') || '';
+            if (href.includes('register') || openBtn.dataset.openRegister !== undefined) {
+                dialog.classList.add('show-register');
+            } else {
+                dialog.classList.remove('show-register');
+            }
+            dialog.showModal();
+        }
+        return;
+    }
+
+    // Klik tombol Masuk Sekarang (karena tanpa database, langsung masuk ke my_order.html)
+    const loginSubmitBtn = e.target.closest('.login-panel .dialog-submit-btn');
+    if (loginSubmitBtn) {
+        e.preventDefault();
+        const dialog = document.getElementById('registerModal');
+        const emailInput = dialog ? dialog.querySelector('#login-email') : null;
+        const userVal = emailInput && emailInput.value.trim() ? emailInput.value.trim() : 'Ujang Merdeka';
+
+        localStorage.setItem('bakery_user', JSON.stringify({
+            isLoggedIn: true,
+            user: userVal,
+            email: userVal.includes('@') ? userVal : `${userVal.toLowerCase().replace(/\s+/g, '')}@gmail.com`,
+            loginTime: new Date().toISOString()
+        }));
+
+        if (dialog) dialog.close();
+        window.location.href = 'my_order.html';
+        return;
+    }
+
+    const toReg = e.target.closest('#toRegisterBtn');
+    const toLog = e.target.closest('#toLoginBtn');
+    const dialog = document.getElementById('registerModal');
+    if (toReg && dialog) {
+        e.preventDefault();
+        dialog.classList.add('show-register');
+        return;
+    }
+    if (toLog && dialog) {
+        e.preventDefault();
+        dialog.classList.remove('show-register');
+        return;
+    }
+
+    const closeBtn = e.target.closest('#closeRegisterModal');
+    if (closeBtn) {
+        e.preventDefault();
+        if (dialog) dialog.close();
+    } else if (dialog && e.target === dialog) {
+        dialog.close();
+    }
+});
+
+// Tangani submit form login & register secara langsung ke my_order.html
+document.addEventListener('submit', (e) => {
+    const loginForm = e.target.closest('#loginForm, .login-panel form');
+    if (loginForm) {
+        e.preventDefault();
+        const emailInput = loginForm.querySelector('#login-email, input[type="text"], input[type="email"]');
+        const userVal = emailInput && emailInput.value.trim() ? emailInput.value.trim() : 'Ujang Merdeka';
+
+        localStorage.setItem('bakery_user', JSON.stringify({
+            isLoggedIn: true,
+            user: userVal,
+            email: userVal.includes('@') ? userVal : `${userVal.toLowerCase().replace(/\s+/g, '')}@gmail.com`,
+            loginTime: new Date().toISOString()
+        }));
+
+        const dialog = document.getElementById('registerModal');
+        if (dialog) dialog.close();
+        window.location.href = 'my_order.html';
+        return;
+    }
+
+    const regForm = e.target.closest('#registerForm, .register-panel form');
+    if (regForm) {
+        e.preventDefault();
+        const usernameInput = regForm.querySelector('#reg-username');
+        const emailInput = regForm.querySelector('#reg-email');
+        const userVal = usernameInput && usernameInput.value.trim() ? usernameInput.value.trim() : 'Ujang Merdeka';
+        const emailVal = emailInput && emailInput.value.trim() ? emailInput.value.trim() : 'ujang@gmail.com';
+
+        localStorage.setItem('bakery_user', JSON.stringify({
+            isLoggedIn: true,
+            user: userVal,
+            email: emailVal,
+            loginTime: new Date().toISOString()
+        }));
+
+        const dialog = document.getElementById('registerModal');
+        if (dialog) dialog.close();
+        window.location.href = 'my_order.html';
+        return;
+    }
+});
+
+window.toggleDialogPass = function(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const isPass = el.type === 'password';
+    el.type = isPass ? 'text' : 'password';
+    const icon = el.parentElement.querySelector('.btn-toggle-eye i');
+    if (icon) {
+        icon.className = isPass ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye';
+    }
+};
+
+// Promo Banner Carousel (Auto-Slide + Controls + Touch Swipe)
+function initPromoCarousel() {
+    const track = document.querySelector('.promo-carousel-track');
+    const slides = document.querySelectorAll('.promo-carousel-slide');
+    const prevBtn = document.querySelector('.promo-prev');
+    const nextBtn = document.querySelector('.promo-next');
+    const dotsContainer = document.querySelector('.promo-dots');
+    if (!track || slides.length === 0) return;
+
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+
+    function renderDots() {
+        if (!dotsContainer) return;
+        dotsContainer.innerHTML = '';
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('button');
+            dot.className = `promo-dot ${i === currentIndex ? 'active' : ''}`;
+            dot.setAttribute('aria-label', `Slide Promo ${i + 1}`);
+            dot.addEventListener('click', () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+        }
+    }
+
+    function updateDots() {
+        if (!dotsContainer) return;
+        const dots = dotsContainer.querySelectorAll('.promo-dot');
+        dots.forEach((dot, idx) => {
+            dot.classList.toggle('active', idx === currentIndex);
+        });
+    }
+
+    function goToSlide(index) {
+        currentIndex = (index + totalSlides) % totalSlides;
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        updateDots();
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
+    }
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+    }
+
+    renderDots();
+
+    let autoTimer = setInterval(() => goToSlide(currentIndex + 1), 3800);
+    const container = document.querySelector('.promo-carousel-container');
+    if (container) {
+        container.addEventListener('mouseenter', () => clearInterval(autoTimer));
+        container.addEventListener('mouseleave', () => {
+            clearInterval(autoTimer);
+            autoTimer = setInterval(() => goToSlide(currentIndex + 1), 3800);
+        });
+
+        let startX = 0;
+        container.addEventListener('touchstart', e => {
+            startX = e.touches[0].clientX;
+        }, { passive: true });
+        container.addEventListener('touchend', e => {
+            const diffX = e.changedTouches[0].clientX - startX;
+            if (Math.abs(diffX) > 40) {
+                if (diffX < 0) goToSlide(currentIndex + 1);
+                else goToSlide(currentIndex - 1);
+            }
+        }, { passive: true });
+    }
+}
+
 // Jalankan saat halaman selesai dimuat
 document.addEventListener('DOMContentLoaded', () => {
     autoLoadComponents();
     loadCardComponents().then(() => initMenuFilter());
     initTestimonialsSlider();
+    initPromoCarousel();
+    updateCartBadge();
+    syncUserAuthUI();
+    window.addEventListener('storage', () => {
+        updateCartBadge();
+        syncUserAuthUI();
+    });
 
     if (document.getElementById('navbar') && !document.querySelector('[data-component*="navbar"]')) {
         loadComponent('#navbar', 'assets/components/navbar.html');
+    }
+
+    if (window.location.search.includes('register=true') || window.location.hash === '#register') {
+        setTimeout(() => {
+            const d = document.getElementById('registerModal');
+            if (d) d.showModal();
+        }, 300);
     }
 });

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesanan Saya - Toko Roti</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/pesanan.css" />
+    <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/navbar.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <div data-component="assets/components/navbar.html"></div>
+
+    <!-- MAIN CONTENT -->
+    <main class="container">
+
+        <!-- PAGE TITLE -->
+        <div class="page-title">
+            <i class="fas fa-shopping-cart"></i>
+            <h1>Pesanan Saya</h1>
+        </div>
+
+        <!-- CART SECTION -->
+        <section class="cart-section">
+            <div class="cart-header">
+                <span>Produk</span>
+                <span>Harga Satuan</span>
+                <span>Kuantitas</span>
+                <span>Total Harga</span>
+                <span>Aksi</span>
+            </div>
+
+            <!-- Item 1 -->
+            <div class="cart-item">
+                <div class="product-info">
+                    <img src="https://placehold.co/80x80/eee/999?text=Roti" alt="Roti Boy" class="product-img">
+                    <div class="product-details">
+                        <h4>Roti Boy</h4>
+                        <p>Variasi: -</p>
+                        <p class="sub-text">Polo Com24x-DopBlue,L</p>
+                        <div class="badges">
+                            <span class="badge-cod">COD</span>
+                            <a href="#" class="link-serupa">Produk Serupa</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="price">Rp80.200</div>
+                <div class="qty-control">
+                    <button class="qty-btn">−</button>
+                    <span class="qty-num">1</span>
+                    <button class="qty-btn">+</button>
+                </div>
+                <div class="total-price">Rp80.200</div>
+                <div class="action">
+                    <button class="btn-hapus">Hapus</button>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="cart-item">
+                <div class="product-info">
+                    <img src="https://placehold.co/80x80/eee/999?text=Roti" alt="Roti Isi Daging" class="product-img">
+                    <div class="product-details">
+                        <h4>Roti Isi Daging…</h4>
+                        <p>Variasi: -</p>
+                        <p class="sub-text">Polo Com24x-DopBlue,L</p>
+                        <div class="badges">
+                            <span class="badge-cod">COD</span>
+                            <a href="#" class="link-serupa">Produk Serupa</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="price">Rp80.200</div>
+                <div class="qty-control">
+                    <button class="qty-btn">−</button>
+                    <span class="qty-num">1</span>
+                    <button class="qty-btn">+</button>
+                </div>
+                <div class="total-price">Rp80.200</div>
+                <div class="action">
+                    <button class="btn-hapus">Hapus</button>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="cart-item">
+                <div class="product-info">
+                    <img src="https://placehold.co/80x80/eee/999?text=Roti" alt="Roti Sobek" class="product-img">
+                    <div class="product-details">
+                        <h4>Roti Sobek</h4>
+                        <p>Variasi: -</p>
+                        <p class="sub-text">Polo Com24x-DopBlue,L</p>
+                        <div class="badges">
+                            <span class="badge-tf">TF BANK</span>
+                            <a href="#" class="link-serupa">Produk Serupa</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="price">Rp80.200</div>
+                <div class="qty-control">
+                    <button class="qty-btn">−</button>
+                    <span class="qty-num">1</span>
+                    <button class="qty-btn">+</button>
+                </div>
+                <div class="total-price">Rp80.200</div>
+                <div class="action">
+                    <button class="btn-hapus">Hapus</button>
+                </div>
+            </div>
+
+            <!-- Cart Footer / Actions -->
+            <div class="cart-footer">
+                <div class="footer-left">
+                    <label class="checkbox-label">
+                        <input type="checkbox"> Pilih Semua (4)
+                    </label>
+                    <button class="btn-text">Hapus</button>
+                    <button class="btn-text">Hapus produk dari Penjual tidak aktif</button>
+                    <button class="btn-text">Tambahkan ke Favorit Saya</button>
+                </div>
+                <div class="footer-right">
+                    <div class="checkout-info">
+                        <span class="total-label">Total (<span id="total-item">0</span> produk):</span>
+                        <span class="grand-total" id="grand-total">Rp0</span>
+                    </div>
+                    <button class="btn-checkout" id="btn-checkout">Checkout</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- RECOMMENDATION SECTION -->
+        <section class="recommendation">
+            <h2>Mungkin Anda Juga Suka</h2>
+
+            <div class="product-grid">
+                <!-- Row 1 -->
+                <div class="product-card">
+                    <img src="https://placehold.co/200x150/eee/999?text=Roti+Sosis" alt="Roti Sosis" class="card-img">
+                    <div class="card-content">
+                        <h4>Roti Sosis</h4>
+                        <p class="card-price">Rp 5.000</p>
+                        <div class="card-rating">
+                            <span><i class="fas fa-star"></i> 4,8</span> <span class="sold">1,238 Sold</span>
+                        </div>
+                        <button class="btn-detail">View Detail</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://placehold.co/200x150/eee/999?text=Roti+Krim+Keju" alt="Roti Krim Keju" class="card-img">
+                    <div class="card-content">
+                        <h4>Roti Krim Keju</h4>
+                        <p class="card-price">Rp 5.000</p>
+                        <div class="card-rating">
+                            <span><i class="fas fa-star"></i> 4,8</span> <span class="sold">1,238 Sold</span>
+                        </div>
+                        <button class="btn-detail">View Detail</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://placehold.co/200x150/eee/999?text=Roti+Meses+Coklat" alt="Roti Meses Coklat" class="card-img">
+                    <div class="card-content">
+                        <h4>Roti Meses Coklat</h4>
+                        <p class="card-price">Rp 5.000</p>
+                        <div class="card-rating">
+                            <span><i class="fas fa-star"></i> 4,5</span> <span class="sold">620 Sold</span>
+                        </div>
+                        <button class="btn-detail">View Detail</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://placehold.co/200x150/eee/999?text=Roti+Kacang+Tanah" alt="Roti Kacang Tanah" class="card-img">
+                    <div class="card-content">
+                        <h4>Roti Kacang Tanah</h4>
+                        <p class="card-price">Rp 5.000</p>
+                        <div class="card-rating">
+                            <span><i class="fas fa-star"></i> 4,6</span> <span class="sold">238 Sold</span>
+                        </div>
+                        <button class="btn-detail">View Detail</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://placehold.co/200x150/eee/999?text=Roti+Meses+Coklat+Keju" alt="Roti Meses Coklat Keju" class="card-img">
+                    <div class="card-content">
+                        <h4>Roti Meses Coklat Keju</h4>
+                        <p class="card-price">Rp 5.000</p>
+                        <div class="card-rating">
+                            <span><i class="fas fa-star"></i> 4,6</span> <span class="sold">238 Sold</span>
+                        </div>
+                        <button class="btn-detail">View Detail</button>
+                    </div>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="product-card">
+                    <img src="https://placehold.co/200x150/eee/999?text=Roti+Sobek" alt="Roti Sobek" class="card-img">
+                    <div class="card-content">
+                        <h4>Roti Sobek</h4>
+                        <p class="card-price">Rp 14.000</p>
+                        <div class="card-rating">
+                            <span><i class="fas fa-star"></i> 4,8</span> <span class="sold">1,238 Sold</span>
+                        </div>
+                        <button class="btn-detail">View Detail</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://placehold.co/200x150/eee/999?text=Roti+Tawar" alt="Roti Tawar" class="card-img">
+                    <div class="card-content">
+                        <h4>Roti Tawar</h4>
+                        <p class="card-price">Rp 12.000</p>
+                        <div class="card-rating">
+                            <span><i class="fas fa-star"></i> 4,8</span> <span class="sold">1,238 Sold</span>
+                        </div>
+                        <button class="btn-detail">View Detail</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://placehold.co/200x150/eee/999?text=Roti+Bagelen" alt="Roti Bagelen" class="card-img">
+                    <div class="card-content">
+                        <h4>Roti Bagelen</h4>
+                        <p class="card-price">Rp 10.000</p>
+                        <div class="card-rating">
+                            <span><i class="fas fa-star"></i> 4,5</span> <span class="sold">620 Sold</span>
+                        </div>
+                        <button class="btn-detail">View Detail</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://placehold.co/200x150/eee/999?text=Roti+Kering+Kecil" alt="Roti Kering Kecil" class="card-img">
+                    <div class="card-content">
+                        <h4>Roti Kering Kecil</h4>
+                        <p class="card-price">Rp 10.000</p>
+                        <div class="card-rating">
+                            <span><i class="fas fa-star"></i> 4,6</span> <span class="sold">238 Sold</span>
+                        </div>
+                        <button class="btn-detail">View Detail</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://placehold.co/200x150/eee/999?text=Roti+Kering+Besar" alt="Roti Kering Besar" class="card-img">
+                    <div class="card-content">
+                        <h4>Roti Kering Besar</h4>
+                        <p class="card-price">Rp 15.000</p>
+                        <div class="card-rating">
+                            <span><i class="fas fa-star"></i> 4,6</span> <span class="sold">238 Sold</span>
+                        </div>
+                        <button class="btn-detail">View Detail</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <div data-component="assets/components/footer.html"></div>
+
+       <!-- COMPONENT LOADER + INTERAKSI -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        // ============ 1. LOAD KOMPONEN (navbar & footer) ============
+        const components = document.querySelectorAll('[data-component]');
+        components.forEach(function (el) {
+            const path = el.getAttribute('data-component');
+            fetch(path)
+                .then(res => {
+                    if (!res.ok) throw new Error('Gagal memuat ' + path);
+                    return res.text();
+                })
+                .then(html => { el.innerHTML = html; })
+                .catch(err => {
+                    console.error(err);
+                    el.innerHTML = '<p style="color:red;text-align:center;">Komponen gagal dimuat: ' + path + '</p>';
+                });
+        });
+
+        // ============ 2. HELPER ============
+        const formatRupiah = (angka) => 'Rp' + angka.toLocaleString('id-ID');
+
+        // ============ 3. UPDATE TOTAL ============
+        function updateGrandTotal() {
+            let totalItem = 0;
+            let totalHarga = 0;
+
+            document.querySelectorAll('.cart-item').forEach(item => {
+                const qty = parseInt(item.querySelector('.qty-num').textContent);
+                const harga = parseInt(
+                    item.querySelector('.price').textContent.replace(/[^\d]/g, '')
+                );
+                const subtotal = qty * harga;
+                item.querySelector('.total-price').textContent = formatRupiah(subtotal);
+                totalItem += qty;
+                totalHarga += subtotal;
+            });
+
+            document.getElementById('total-item').textContent = totalItem;
+            document.getElementById('grand-total').textContent = formatRupiah(totalHarga);
+        }
+
+        // ============ 4. INTERAKSI KERANJANG (event delegation) ============
+        document.querySelector('.cart-section').addEventListener('click', function (e) {
+            const target = e.target;
+
+            // Tombol +
+            if (target.classList.contains('qty-btn') && target.textContent.trim() === '+') {
+                const item = target.closest('.cart-item');
+                const qtyEl = item.querySelector('.qty-num');
+                qtyEl.textContent = parseInt(qtyEl.textContent) + 1;
+                updateGrandTotal();
+            }
+
+            // Tombol −
+            if (target.classList.contains('qty-btn') && target.textContent.trim() === '−') {
+                const item = target.closest('.cart-item');
+                const qtyEl = item.querySelector('.qty-num');
+                const current = parseInt(qtyEl.textContent);
+                if (current > 1) {
+                    qtyEl.textContent = current - 1;
+                    updateGrandTotal();
+                } else if (confirm('Hapus produk ini dari keranjang?')) {
+                    item.remove();
+                    updateGrandTotal();
+                }
+            }
+
+            // Tombol Hapus per item
+            if (target.classList.contains('btn-hapus')) {
+                const item = target.closest('.cart-item');
+                if (confirm('Yakin ingin menghapus produk ini?')) {
+                    item.remove();
+                    updateGrandTotal();
+                }
+            }
+        });
+
+        // ============ 5. TOMBOL MASSAL DI FOOTER KERANJANG ============
+        document.querySelectorAll('.cart-footer .btn-text').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const label = btn.textContent.trim().toLowerCase();
+                if (label === 'hapus') {
+                    if (confirm('Hapus semua produk dari keranjang?')) {
+                        document.querySelectorAll('.cart-item').forEach(el => el.remove());
+                        updateGrandTotal();
+                    }
+                }
+                if (label.includes('penjual tidak aktif')) {
+                    document.querySelectorAll('.cart-item').forEach(item => {
+                        if (item.querySelector('.badge-tf')) item.remove();
+                    });
+                    updateGrandTotal();
+                }
+                if (label.includes('favorit')) {
+                    alert('Produk berhasil ditambahkan ke favorit!');
+                }
+            });
+        });
+
+        // ============ 6. CHECKOUT ============
+        document.getElementById('btn-checkout').addEventListener('click', function () {
+            const total = document.getElementById('grand-total').textContent;
+            if (total === 'Rp0') {
+                alert('Keranjang masih kosong. Silakan pilih produk terlebih dahulu.');
+                return;
+            }
+            alert('Checkout berhasil!\nTotal pembayaran: ' + total);
+        });
+
+        // ============ 7. VIEW DETAIL OTOMATIS (tanpa data-*) ============
+        document.querySelectorAll('.btn-detail').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const card = btn.closest('.product-card');
+                const name = card.querySelector('h4').textContent.trim();
+                const priceText = card.querySelector('.card-price').textContent.trim();
+                const rating = card.querySelector('.card-rating span').textContent.trim();
+                const sold = card.querySelector('.sold').textContent.trim();
+
+                alert(
+                    `Detail Produk\n\n` +
+                    `Nama   : ${name}\n` +
+                    `Harga  : ${priceText}\n` +
+                    `Rating : ${rating}\n` +
+                    `Terjual: ${sold}`
+                );
+
+                // Kalau mau arahkan ke halaman detail:
+                // window.location.href = 'detail.html?produk=' + encodeURIComponent(name);
+            });
+        });
+
+        // ============ 8. HITUNG TOTAL AWAL ============
+        updateGrandTotal();
+    });
+    </script>
+</body>
+</html>

@@ -1,12 +1,4 @@
-/**
- * Database Produk TEFA Bakery & Pastry
- * Digunakan secara terpusat untuk render menu card di home.html
- * dan render dinamis di detail_product.html via URL Query Parameter (?id=...)
- */
 const PRODUCTS_DATA = [
-    // ==========================================
-    // KATEGORI: MAKANAN (ROTI & PASTRY)
-    // ==========================================
     {
         id: 'roti-pizza',
         name: 'Roti Pizza',
@@ -74,9 +66,7 @@ const PRODUCTS_DATA = [
         description: 'Roti tradisional berbentuk lingkaran kenong dengan tekstur pulen dan cita rasa manis legit yang pas. Dibuat menggunakan ragi alami dan fermentasi teratur khas dapur Teaching Factory Polije untuk menjamin kualitas rasa otentik.',
     },
 
-    // ==========================================
-    // KATEGORI: MINUMAN (COFFEE & BEVERAGES)
-    // ==========================================
+    // Kategori: Minuman
     {
         id: 'cappucino-panas',
         name: 'Cappucino Panas',
@@ -123,7 +113,6 @@ const PRODUCTS_DATA = [
     }
 ];
 
-// Helper: Cari produk berdasarkan ID (slug)
 function getProductById(id) {
     if (!id) return PRODUCTS_DATA[0];
     const found = PRODUCTS_DATA.find(p => p.id === id);

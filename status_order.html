@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TEFA Bakery - Status Pesanan</title>
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="assets/css/navbar.css" />
+  <link rel="stylesheet" href="assets/css/footer.css" />
+  <link rel="stylesheet" href="assets/css/status_order.css">
+</head>
+
+<body>
+
+<div data-component="assets/components/navbar.html"></div>
+
+<main class="container">
+<div class="breadcrumb">
+<a href="home.html">Home</a>
+<span>›</span>
+<a href="#">My Account</a>
+<span>›</span>
+<span class="current">Order Detail</span>
+</div>
+
+<section class="account-layout">
+
+<aside class="sidebar">
+    <p class="welcome">Welcome to your Account</p>
+
+    <ul>
+        <li class="selected">
+            <a href="my_order.html"><span>♧</span> My orders</a>
+        </li>
+        <li>
+            <a href="wishlist.html"><span>♡</span> Wishlist</a>
+        </li>
+        <li>
+            <a href="contact_detail.html"><span>♙</span> My info</a>
+        </li>
+        <li>
+            <a href="#" id="statusSignOut"><span>⇥</span> Sign out</a>
+        </li>
+    </ul>
+</aside>
+
+<section class="orders-section">
+    <h1>Detail Order</h1>
+
+    <div class="order-summary">
+        <div>
+            <h2>Order no: #123456789</h2>
+            <p>Placed On 2 June 2023 2:40 PM</p>
+        </div>
+
+        <p class="order-total">
+            Total : <strong id="totalPrice">$58.00</strong>
+        </p>
+    </div>
+
+
+ <div class="timeline">
+        <div class="step done">
+            <div class="dot"></div>
+            <span>Order Placed</span>
+        </div>
+        <div class="step current">
+            <div class="dot"></div>
+            <span>In Progress</span>
+        </div>
+        <div class="step pending">
+            <div class="dot"></div>
+            <span>Shipped</span>
+        </div>
+        <div class="step pending">
+            <div class="dot"></div>
+            <span>Delivered</span>
+        </div>
+    </div>
+
+
+    <div class="status-message">
+        <time>8 June 2023 3:40 PM</time>
+        <p>Your order has been successfully verified.</p>
+    </div>
+
+    
+    <div class="product-box" id="productBox">
+
+        <article class="product-row" data-price="29" data-qty="1">
+            <svg class="product-icon" viewBox="0 0 60 60"
+                fill="none" stroke="#222" stroke-width="2.4">
+                <rect x="2.5" y="2.5" width="55" height="55" rx="6"></rect>
+                <circle cx="19" cy="19" r="4.5"></circle>
+                <path d="M5 51L23 32L31 40L42 28L56 42"></path>
+            </svg>
+
+            <div class="product-info">
+                <h3>Printed White Coat</h3>
+                <p><strong>Color :</strong> White</p>
+            </div>
+
+            <p class="product-qty">Qty : <span>1</span></p>
+            <p class="product-price">$29.00</p>
+
+            <button class="remove-item" type="button"
+                aria-label="Hapus Printed White Coat">×</button>
+        </article>
+
+        <article class="product-row" data-price="29" data-qty="1">
+            <svg class="product-icon" viewBox="0 0 60 60"
+                fill="none" stroke="#222" stroke-width="2.4">
+                <rect x="2.5" y="2.5" width="55" height="55" rx="6"></rect>
+                <circle cx="19" cy="19" r="4.5"></circle>
+                <path d="M5 51L23 32L31 40L42 28L56 42"></path>
+            </svg>
+
+            <div class="product-info">
+                <h3>Men Blue Shirt</h3>
+                <p><strong>Color :</strong> Blue</p>
+            </div>
+
+            <p class="product-qty">Qty : <span>1</span></p>
+            <p class="product-price">$29.00</p>
+
+            <button class="remove-item" type="button"
+                aria-label="Hapus Men Blue Shirt">×</button>
+        </article>
+
+    </div>
+</section>
+</section>
+</main>
+
+
+<div data-component="assets/components/footer.html"></div>
+
+  <script src="assets/js/status_order.js"></script>
+  <script src="assets/js/script.js"></script>
+
+</body>
+</html>

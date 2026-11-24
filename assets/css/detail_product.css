@@ -1,6 +1,4 @@
-/* ==========================================
-   BASE RESET & TYPOGRAPHY (DETAIL PRODUCT PAGE)
-   ========================================== */
+/* BASE RESET & TYPOGRAPHY */
 * {
     margin: 0;
     padding: 0;
@@ -22,58 +20,11 @@ body {
 
 main {
     flex: 1;
-}
-
-/* ==========================================
-   BREADCRUMB & BACK BUTTON NAVIGATION
-   ========================================== */
-.product-nav-bar {
-    max-width: 1120px;
-    margin: 32px auto 20px;
-    padding: 0 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 16px;
-}
-
-.btn-back-menu {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    color: #522C1A;
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 30px;
-    background-color: rgba(163, 110, 74, 0.12);
-    border: 1px solid rgba(82, 44, 26, 0.18);
-    transition: all 0.22s ease;
-    cursor: pointer;
-}
-
-.btn-back-menu i {
-    font-size: 13px;
-    transition: transform 0.22s ease;
-}
-
-.btn-back-menu:hover {
-    background-color: #522C1A;
-    color: #FAF4EC;
-    border-color: #522C1A;
-    transform: translateX(-3px);
-}
-
-.btn-back-menu:hover i {
-    transform: translateX(-2px);
+    margin-top: 70px;
 }
 
 
-/* ==========================================
-   PRODUCT DETAIL CONTAINER & GRID
-   ========================================== */
+/* PRODUCT DETAIL CONTAINER & GRID */
 .product-detail-section {
     max-width: 1120px;
     margin: 0 auto 90px;
@@ -88,9 +39,7 @@ main {
     align-items: start;
 }
 
-/* ==========================================
-   LEFT COLUMN: PRODUCT MEDIA
-   ========================================== */
+/* LEFT COLUMN: PRODUCT MEDIA */
 .product-media {
     position: sticky;
     top: 90px;
@@ -119,9 +68,7 @@ main {
 }
 
 
-/* ==========================================
-   RIGHT COLUMN: PRODUCT DETAILS & ACTIONS
-   ========================================== */
+/* RIGHT COLUMN: PRODUCT DETAILS & ACTIONS */
 .product-info {
     display: flex;
     flex-direction: column;
@@ -362,9 +309,7 @@ main {
     font-size: 18px;
 }
 
-/* ==========================================
-   RESPONSIVE DESIGN (TABLET & MOBILE)
-   ========================================== */
+/* RESPONSIVE DESIGN */
 @media (max-width: 900px) {
     .product-detail-grid {
         grid-template-columns: 1fr;

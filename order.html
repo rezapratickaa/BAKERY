@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TEFA Roti & Pastry - Pesanan Saya</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <link rel="stylesheet" href="assets/css/navbar.css" />
+    <link rel="stylesheet" href="assets/css/footer.css" />
+    <link rel="stylesheet" href="assets/css/order.css" />
+</head>
+<body>
+    <div data-component="assets/components/navbar.html"></div>
+
+    <header class="order-hero">
+        <div class="order-hero-inner">
+            <i class="fa-solid fa-cart-shopping order-hero-icon" aria-hidden="true"></i>
+            <div>
+                <h1>Pesanan Saya</h1>
+                <p>Periksa pesanan Anda sebelum melanjutkan ke pembayaran.</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="order-main">
+        <!-- Table header (desktop) -->
+        <div class="order-table-head" aria-hidden="true">
+            <span class="col-check"></span>
+            <span class="col-product">Produk</span>
+            <span class="col-price">Harga Satuan</span>
+            <span class="col-qty">Kuantitas</span>
+            <span class="col-subtotal">Total Harga</span>
+            <span class="col-action">Aksi</span>
+        </div>
+
+        <!-- Items rendered by JS -->
+        <div id="orderItemsList" class="order-items-list"></div>
+
+        <!-- Empty state (shown when no items) -->
+        <div id="orderEmpty" class="order-empty" hidden>
+            <i class="fa-solid fa-basket-shopping" aria-hidden="true"></i>
+            <h2>Keranjang kosong</h2>
+            <p>Anda belum menambahkan produk. Jelajahi menu kami untuk memilih roti dan minuman favorit.</p>
+            <a href="product.html" class="order-browse-btn">Lihat Menu</a>
+        </div>
+
+        <!-- Bottom bar -->
+        <div id="orderBottomBar" class="order-bottom-bar">
+            <div class="order-select-actions">
+                <label class="order-check-all">
+                    <input type="checkbox" id="checkAll" />
+                    <span>Pilih Semua (<span id="totalItemCount">0</span>)</span>
+                </label>
+                <button type="button" class="order-delete-btn" id="deleteSelectedBtn" aria-label="Hapus produk terpilih">Hapus</button>
+            </div>
+            <div class="order-summary">
+                <span class="order-total-label">Total (<span id="selectedCount">0</span> produk):</span>
+                <span class="order-total-price" id="totalPrice">Rp0</span>
+                <button type="button" class="order-checkout-btn" id="checkoutBtn">Checkout</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- POPUP MODAL CHECKOUT TO WHATSAPP -->
+    <dialog id="checkoutModal" class="checkout-dialog">
+        <div class="checkout-modal-card">
+            <button type="button" class="checkout-close-btn" id="closeCheckoutModal" aria-label="Tutup formulir checkout">&times;</button>
+            
+            <div class="checkout-modal-header">
+                <h2>Konfirmasi Pemesanan</h2>
+                <p>Lengkapi informasi berikut untuk mengirimkan pesanan langsung ke WhatsApp admin TEFA Bakery.</p>
+            </div>
+
+            <div class="checkout-order-summary-box">
+                <div class="summary-box-left">
+                    <span class="summary-label">Produk Terpilih:</span>
+                    <strong id="modalSummaryItems">0 produk</strong>
+                </div>
+                <div class="summary-box-right">
+                    <span class="summary-label">Total Pembayaran:</span>
+                    <strong class="summary-total-price" id="modalSummaryTotal">Rp0</strong>
+                </div>
+            </div>
+
+            <form id="checkoutForm" class="checkout-form" novalidate>
+                <div class="checkout-form-grid">
+                    <div class="checkout-field">
+                        <label for="orderCustomerName">Nama Lengkap <span>*</span></label>
+                        <input type="text" id="orderCustomerName" name="customerName" placeholder="Contoh: Budi Santoso" required autocomplete="name" />
+                    </div>
+
+                    <div class="checkout-field">
+                        <label for="orderCustomerPhone">Nomor WhatsApp / HP <span>*</span></label>
+                        <input type="tel" id="orderCustomerPhone" name="customerPhone" placeholder="Contoh: 081234567890" required autocomplete="tel" />
+                    </div>
+                </div>
+
+                <div class="checkout-field">
+                    <label>Metode Pengambilan / Pengiriman <span>*</span></label>
+                    <div class="delivery-options-group">
+                        <label class="delivery-option">
+                            <input type="radio" name="deliveryMethod" value="delivery" checked />
+                            <span class="delivery-option-pill">
+                                <i class="fa-solid fa-truck-fast" aria-hidden="true"></i>
+                                <span>Antar ke Alamat</span>
+                            </span>
+                        </label>
+                        <label class="delivery-option">
+                            <input type="radio" name="deliveryMethod" value="pickup" />
+                            <span class="delivery-option-pill">
+                                <i class="fa-solid fa-store" aria-hidden="true"></i>
+                                <span>Ambil di Toko (Pickup)</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="checkout-field" id="addressFieldGroup">
+                    <label for="orderCustomerAddress">Alamat Pengiriman Lengkap <span>*</span></label>
+                    <textarea id="orderCustomerAddress" name="customerAddress" rows="2" placeholder="Nama jalan, nomor rumah, RT/RW, kelurahan/kecamatan di Jember" required></textarea>
+                </div>
+
+                <div class="checkout-field">
+                    <label for="orderPaymentMethod">Pilihan Pembayaran <span>*</span></label>
+                    <select id="orderPaymentMethod" name="paymentMethod" required>
+                        <option value="Transfer Bank (BCA / BRI / Mandiri)">Transfer Bank (BCA / BRI / Mandiri)</option>
+                        <option value="QRIS (Semua E-Wallet & Mobile Banking)">QRIS (ShopeePay, GoPay, OVO, Dana, dll)</option>
+                        <option value="Bayar di Toko / COD">Bayar di Tempat (COD / Kasir Toko)</option>
+                    </select>
+                </div>
+
+                <div class="checkout-field">
+                    <label for="orderNotes">Catatan Tambahan (Opsional)</label>
+                    <input type="text" id="orderNotes" name="orderNotes" placeholder="Contoh: Roti tolong dihangatkan / antar jam 2 siang" />
+                </div>
+
+                <button type="submit" class="btn-send-whatsapp">
+                    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+                    <span>Kirim Pesanan ke WhatsApp</span>
+                </button>
+            </form>
+        </div>
+    </dialog>
+
+    <div data-component="assets/components/footer.html"></div>
+    <script src="assets/js/products.js"></script>
+    <script src="assets/js/order.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
