@@ -52,86 +52,51 @@
 <section class="orders-section">
     <h1>Detail Order</h1>
 
-    <div class="order-summary">
+    <div class="order-summary" id="orderSummaryBox">
         <div>
-            <h2>Order no: #123456789</h2>
-            <p>Placed On 2 June 2023 2:40 PM</p>
+            <h2>Order no: <span id="orderNoTitle">#1</span></h2>
+            <p id="orderPlacedDate">Placed On -</p>
         </div>
 
         <p class="order-total">
-            Total : <strong id="totalPrice">$58.00</strong>
+            Total : <strong id="totalPrice">Rp 0</strong>
         </p>
     </div>
 
 
- <div class="timeline">
-        <div class="step done">
+ <div class="timeline" id="orderTimeline">
+        <div class="step done" id="stepPlaced">
             <div class="dot"></div>
             <span>Order Placed</span>
         </div>
-        <div class="step current">
+        <div class="step current" id="stepProgress">
             <div class="dot"></div>
             <span>In Progress</span>
         </div>
-        <div class="step pending">
+        <div class="step pending" id="stepShipped">
             <div class="dot"></div>
             <span>Shipped</span>
         </div>
-        <div class="step pending">
+        <div class="step pending" id="stepDelivered">
             <div class="dot"></div>
             <span>Delivered</span>
         </div>
     </div>
 
 
-    <div class="status-message">
-        <time>8 June 2023 3:40 PM</time>
-        <p>Your order has been successfully verified.</p>
+    <div class="status-message" id="orderStatusMessage">
+        <time id="statusTime">-</time>
+        <p id="statusDesc">Pesanan Anda sedang dalam proses verifikasi.</p>
     </div>
 
     
-    <div class="product-box" id="productBox">
+    <div class="product-box" id="productBox"></div>
 
-        <article class="product-row" data-price="29" data-qty="1">
-            <svg class="product-icon" viewBox="0 0 60 60"
-                fill="none" stroke="#222" stroke-width="2.4">
-                <rect x="2.5" y="2.5" width="55" height="55" rx="6"></rect>
-                <circle cx="19" cy="19" r="4.5"></circle>
-                <path d="M5 51L23 32L31 40L42 28L56 42"></path>
-            </svg>
-
-            <div class="product-info">
-                <h3>Printed White Coat</h3>
-                <p><strong>Color :</strong> White</p>
-            </div>
-
-            <p class="product-qty">Qty : <span>1</span></p>
-            <p class="product-price">$29.00</p>
-
-            <button class="remove-item" type="button"
-                aria-label="Hapus Printed White Coat">×</button>
-        </article>
-
-        <article class="product-row" data-price="29" data-qty="1">
-            <svg class="product-icon" viewBox="0 0 60 60"
-                fill="none" stroke="#222" stroke-width="2.4">
-                <rect x="2.5" y="2.5" width="55" height="55" rx="6"></rect>
-                <circle cx="19" cy="19" r="4.5"></circle>
-                <path d="M5 51L23 32L31 40L42 28L56 42"></path>
-            </svg>
-
-            <div class="product-info">
-                <h3>Men Blue Shirt</h3>
-                <p><strong>Color :</strong> Blue</p>
-            </div>
-
-            <p class="product-qty">Qty : <span>1</span></p>
-            <p class="product-price">$29.00</p>
-
-            <button class="remove-item" type="button"
-                aria-label="Hapus Men Blue Shirt">×</button>
-        </article>
-
+    <div id="noOrderAlert" class="empty-message" hidden>
+        <div class="empty-icon"><i class="fa-solid fa-receipt" aria-hidden="true"></i></div>
+        <h3>Belum Ada Pesanan Terpilih</h3>
+        <p>Silakan pilih pesanan dari halaman riwayat pesanan Anda untuk melihat rincian dan status pengiriman.</p>
+        <a href="my_order.html" class="btn-explore">Buka My Orders</a>
     </div>
 </section>
 </section>

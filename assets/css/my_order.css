@@ -326,11 +326,63 @@ body {
 .empty-message {
   text-align: center;
   color: #7A6559;
-  padding: 50px 20px;
+  padding: 60px 24px;
   background: #ffffff;
   border: 1px dashed #EBD8BB;
   border-radius: 16px;
-  font-size: 15px;
+  margin-top: 10px;
+}
+
+.empty-message .empty-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #FAF4EC;
+  border: 1px solid #EBD8BB;
+  color: #8B5E3C;
+  font-size: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.empty-message h3 {
+  font-family: 'Poppins', 'DM Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #522C1A;
+  margin-bottom: 8px;
+}
+
+.empty-message p {
+  color: #7A6559;
+  font-size: 14px;
+  max-width: 440px;
+  margin: 0 auto 20px;
+  line-height: 1.6;
+}
+
+.empty-message .btn-explore {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  min-height: 44px;
+  background: #522C1A;
+  color: #ffffff;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 3px 8px rgba(82, 44, 26, 0.2);
+}
+
+.empty-message .btn-explore:hover {
+  background: #3D1F11;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 14px rgba(82, 44, 26, 0.3);
 }
 
 /* Dialog Detail (Modal) */
