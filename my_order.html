@@ -43,7 +43,12 @@
         </div>
 
         <div id="ordersList" class="orders-list" aria-live="polite"></div>
-        <p id="emptyMessage" class="empty-message" hidden>Tidak ada pesanan pada kategori ini.</p>
+        <div id="emptyMessage" class="empty-message" hidden>
+          <div class="empty-icon"><i class="fa-solid fa-box-open" aria-hidden="true"></i></div>
+          <h3 id="emptyTitle">Belum Ada Pesanan</h3>
+          <p id="emptySubtext">Anda belum memiliki riwayat pesanan roti atau minuman. Silakan pesan melalui menu produk kami.</p>
+          <a href="product.html" class="btn-explore" id="emptyActionBtn">Jelajahi Menu</a>
+        </div>
       </section>
     </section>
   </main>
