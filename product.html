@@ -11,24 +11,22 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-    <!-- css -->
-    <link rel="stylesheet" href="assets/css/navbar.css" />
-    <link rel="stylesheet" href="assets/css/card.css" />
-    <link rel="stylesheet" href="assets/css/footer.css" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/components.css" />
     <link rel="stylesheet" href="assets/css/product.css" />
 </head>
 <body>
-    <!-- navbar -->
+    <!-- Navbar -->
     <div data-component="assets/components/navbar.html"></div>
 
-    <!-- hero -->
+    <!-- Hero -->
     <section class="hero">
         <span class="badge">Selamat Datang di TEFA Roti &amp; Pastry</span>
         <h2>Lezatnya Kreasi Roti Berkualitas Tinggi</h2>
         <p>
             "Diproduksi langsung oleh para siswa dan talenta muda berpengalaman dengan
             bahan-bahan pilihan berkualitas tinggi, menghasilkan cita rasa roti dan
-            pastry yang iwstimewa setiap harinya."
+            pastry yang istimewa setiap harinya"
         </p>
         <div class="hero-buttons">
             <a href="#makanan" class="btn btn-primary">Pesan Sekarang</a>
@@ -36,13 +34,8 @@
         </div>
     </section>
 
-    <!-- menu -->
+    <!-- Menu Section -->
     <section class="menu-section">
-        <div class="section-header">
-            <h2>Menu Pilihan Kami</h2>
-            <p>Temukan berbagai varian rasa favorit Anda di sini</p>
-        </div>
-
         <div class="menu-category" id="makanan">
             <h3>Makanan</h3>
             <div class="product-grid" data-render-category="makanan"></div>
@@ -54,7 +47,7 @@
         </div>
     </section>
 
-    <!-- banner promo carousel -->
+    <!-- Banner Promo Carousel -->
     <section class="promo-banner-section">
         <div class="promo-carousel-container">
             <div class="promo-carousel-track">
@@ -80,14 +73,36 @@
                     </div>
                 </div>
             </div>
-
             <!-- Dots -->
             <div class="promo-dots"></div>
         </div>
     </section>
 
-    <!-- footer -->
+    <!-- Footer -->
     <div data-component="assets/components/footer.html"></div>
+
+    <!-- Scripts -->
+    <script>
+        // COMPONENT LOADER
+        document.addEventListener('DOMContentLoaded', function () {
+            const components = document.querySelectorAll('[data-component]');
+            components.forEach(function (el) {
+                const path = el.getAttribute('data-component');
+                fetch(path)
+                    .then(function (res) {
+                        if (!res.ok) throw new Error('Gagal memuat ' + path);
+                        return res.text();
+                    })
+                    .then(function (html) {
+                        el.innerHTML = html;
+                    })
+                    .catch(function (err) {
+                        console.error(err);
+                        el.innerHTML = '<p style="color:red;text-align:center;">Komponen gagal dimuat: ' + path + '</p>';
+                    });
+            });
+        });
+    </script>
     <script src="assets/js/products.js"></script>
     <script src="assets/js/script.js"></script>
 </body>
