@@ -14,7 +14,8 @@ body {
 
 /* HERO */
 .contact-hero {
-    padding: 80px 30px 40px;
+    width: 100%;
+    padding: 60px 30px 30px;
     max-width: 1100px;
     margin: 0 auto;
 }
@@ -22,7 +23,7 @@ body {
 .contact-hero h1 {
     font-family: 'Playfair Display', serif;
     font-size: 44px;
-    color: #522C1A;
+    color: #522C1A; 
     margin-bottom: 14px;
 }
 
@@ -34,6 +35,7 @@ body {
 
 /* MAIN SECTION */
 .contact-section {
+    width: 100%;
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 30px 60px;
@@ -206,9 +208,17 @@ body {
 
 /* MAP */
 .contact-map-section {
+    width: 100%;
     max-width: 1100px;
     margin: 0 auto 60px;
     padding: 0 30px;
+}
+
+.contact-map-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 44px;
+    color: #522C1A;
+    margin-bottom: 16px;
 }
 
 /* RESPONSIVE */

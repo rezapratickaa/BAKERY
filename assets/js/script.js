@@ -298,7 +298,9 @@ function loadCardComponents() {
         if (typeof PRODUCTS_DATA !== 'undefined' && containers.length > 0) {
             containers.forEach(container => {
                 const category = container.getAttribute('data-render-category');
-                const list = PRODUCTS_DATA.filter(p => p.category === category);
+                const limit = parseInt(container.getAttribute('data-limit'), 10);
+                let list = category === 'all' ? PRODUCTS_DATA : PRODUCTS_DATA.filter(p => p.category === category);
+                if (limit > 0) list = list.slice(0, limit);
 
                 container.innerHTML = list.map(p => {
                     const imageHtml = p.image
